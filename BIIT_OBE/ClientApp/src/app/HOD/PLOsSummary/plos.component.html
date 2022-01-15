@@ -1,0 +1,108 @@
+<div *ngIf="spinner">
+    <div id="loading">
+        <div class="loader simple-loader">
+          <div class="loader-body"></div>
+        </div>
+      </div>
+</div>
+<div *ngIf="!spinner">
+    <app-hod-sidebar></app-hod-sidebar>
+
+    <main class="main-content">
+        <app-header></app-header>
+        <br>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-5">
+                <label for="" style="font-weight: 900;">Please select the program :</label>
+                <select class="form-select shadow" name="programselection" [(ngModel)]="programselection"
+                    (change)="SelectedProgram_GetPLOS()">
+                    <option *ngFor="let item of programs" value={{item.id}}>{{item.pname}}</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+        <br><br>
+        <div class="conatiner-fluid content-inner mt-n5 py-0">
+            <div class="row">
+                <div class="col-md-2 col-lg-2"></div>
+                <div class="col-md-10 col-lg-10">
+                    <br>
+                    <div class="table-responsive">
+                        <table *ngIf="mainTable" id="datatable" class="table table-striped" data-toggle="data-table">
+                            <thead>
+                                <tr>
+                                    <th>PLO Name</th>
+                                    <th>PLO Description</th>
+                                    <th>Assign Evaluation</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                <tr *ngFor="let item of plodetails;let idx=index">
+                                    <td>PLO{{idx+1}}</td>
+                                    <td>
+                                        <details>
+                                            <summary><b>{{item.ploname}}</b></summary>
+                                            <p class="custom_lineBreak">{{item.plodes}}</p>
+                                        </details>
+                                    </td>
+                                    <td>
+                                        {{item.ploweightage}}%
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary" (click)="GetPLODeatils(item,idx+1)">View
+                                            Details</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table *ngIf="!mainTable" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>PLO Title</th>
+                                    <th>CLO </th>
+                                    <th>Course Name</th>
+                                    <th>Assign Evaluation</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                <tr *ngFor="let item of clodetails">
+                                    <td>
+                                        PLO{{ploname}}
+                                    </td>
+                                    <td class="custom_lineBreak">
+                                        <details>
+                                            <summary>CLO{{item.clO_Id}}</summary>
+                                            <h5>{{item.cloname}}:</h5>
+                                            <p>{{item.clodes}}</p>
+                                        </details>
+                                        
+                                    </td>
+                                    <td>
+                                        {{item.coursename}}
+                                    </td>
+                                    <td>
+                                        {{item.weightage}}%
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <th colspan="6"> <button class="btn btn-primary" (click)="back()">Back to
+                                            PLOs</button>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Section Start -->
+        <app-footer></app-footer>
+        <!-- Footer Section End -->
+    </main>
+</div>

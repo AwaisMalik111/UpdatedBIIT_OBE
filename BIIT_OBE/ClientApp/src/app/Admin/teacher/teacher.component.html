@@ -1,0 +1,218 @@
+<div *ngIf="spinner">
+    <div id="loading">
+        <div class="loader simple-loader">
+          <div class="loader-body"></div>
+        </div>
+      </div>
+</div>
+<div *ngIf="!spinner">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+        <app-header></app-header><br>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-2">
+                <div style="padding: 1px;">
+                    <button class="btn btn-primary shadow" data-bs-target="#AddNewTeacher" data-bs-toggle="offcanvas">
+                        <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M5.91064 20.5886C5.91064 19.7486 6.59064 19.0686 7.43064 19.0686C8.26064 19.0686 8.94064 19.7486 8.94064 20.5886C8.94064 21.4186 8.26064 22.0986 7.43064 22.0986C6.59064 22.0986 5.91064 21.4186 5.91064 20.5886ZM17.1606 20.5886C17.1606 19.7486 17.8406 19.0686 18.6806 19.0686C19.5106 19.0686 20.1906 19.7486 20.1906 20.5886C20.1906 21.4186 19.5106 22.0986 18.6806 22.0986C17.8406 22.0986 17.1606 21.4186 17.1606 20.5886Z"
+                                fill="currentColor"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M20.1907 6.34909C20.8007 6.34909 21.2007 6.55909 21.6007 7.01909C22.0007 7.47909 22.0707 8.13909 21.9807 8.73809L21.0307 15.2981C20.8507 16.5591 19.7707 17.4881 18.5007 17.4881H7.59074C6.26074 17.4881 5.16074 16.4681 5.05074 15.1491L4.13074 4.24809L2.62074 3.98809C2.22074 3.91809 1.94074 3.52809 2.01074 3.12809C2.08074 2.71809 2.47074 2.44809 2.88074 2.50809L5.26574 2.86809C5.60574 2.92909 5.85574 3.20809 5.88574 3.54809L6.07574 5.78809C6.10574 6.10909 6.36574 6.34909 6.68574 6.34909H20.1907ZM14.1307 11.5481H16.9007C17.3207 11.5481 17.6507 11.2081 17.6507 10.7981C17.6507 10.3781 17.3207 10.0481 16.9007 10.0481H14.1307C13.7107 10.0481 13.3807 10.3781 13.3807 10.7981C13.3807 11.2081 13.7107 11.5481 14.1307 11.5481Z"
+                                fill="currentColor"></path>
+                        </svg>
+                        <span>Add new User</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="conatiner-fluid content-inner mt-n5 py-0">
+            <div class="row">
+                <div class="col-md-2 col-lg-2"></div>
+                <div class="col-md-10 col-lg-10">
+                    <br>
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped" data-toggle="data-table">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>User Id</th>
+                                    <th>User Role</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of Allteacher">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.remail}}</td>
+                                    <td>{{item.status}}</td>
+                                    <td>
+                                        <a data-toggle="tooltip" (click)="UpdateDetails(item)" data-placement="top"
+                                            title="Edit" class="mr-3" href="javascript:void(0);"
+                                            data-bs-target="#EditUser" data-bs-toggle="offcanvas">
+                                            <svg width="32" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.4"
+                                                    d="M19.9927 18.9534H14.2984C13.7429 18.9534 13.291 19.4124 13.291 19.9767C13.291 20.5422 13.7429 21.0001 14.2984 21.0001H19.9927C20.5483 21.0001 21.0001 20.5422 21.0001 19.9767C21.0001 19.4124 20.5483 18.9534 19.9927 18.9534Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M10.309 6.90385L15.7049 11.2639C15.835 11.3682 15.8573 11.5596 15.7557 11.6929L9.35874 20.0282C8.95662 20.5431 8.36402 20.8344 7.72908 20.8452L4.23696 20.8882C4.05071 20.8903 3.88775 20.7613 3.84542 20.5764L3.05175 17.1258C2.91419 16.4915 3.05175 15.8358 3.45388 15.3306L9.88256 6.95545C9.98627 6.82108 10.1778 6.79743 10.309 6.90385Z"
+                                                    fill="currentColor"></path>
+                                                <path opacity="0.4"
+                                                    d="M18.1208 8.66544L17.0806 9.96401C16.9758 10.0962 16.7874 10.1177 16.6573 10.0124C15.3927 8.98901 12.1545 6.36285 11.2561 5.63509C11.1249 5.52759 11.1069 5.33625 11.2127 5.20295L12.2159 3.95706C13.126 2.78534 14.7133 2.67784 15.9938 3.69906L17.4647 4.87078C18.0679 5.34377 18.47 5.96726 18.6076 6.62299C18.7663 7.3443 18.597 8.0527 18.1208 8.66544Z"
+                                                    fill="currentColor"></path>
+                                            </svg> </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section Start -->
+        <app-footer></app-footer>
+        <!-- Footer Section End -->
+    </main>
+
+    <!-- Wrapper End-->
+    <!-- offcanvas start -->
+
+    <div class="offcanvas offcanvas-end" style="width:60%;" tabindex="-1" id="AddNewTeacher" data-bs-scroll="true"
+        data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <div class="d-flex align-items-center">
+                <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Add New User</h3>
+            </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body data-scrollbar">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">First Name :</label>
+                                <input autocomplete="off" type="text" class="form-control shadow" name="fname"
+                                    [(ngModel)]="fname" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Last Name :</label>
+                                <input autocomplete="off" type="text" class="form-control shadow"
+                                    id="exampleInputPassword1" name="lname" [(ngModel)]="lname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Username :</label>
+                                <input autocomplete="off" type="text" class="form-control shadow"
+                                    id="exampleInputPassword1" name="email" [(ngModel)]="email">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Password :</label>
+                                <input autocomplete="off" type="password" class="form-control shadow"
+                                    id="exampleInputPassword1" name="password" [(ngModel)]="password">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Confirm Password :</label>
+                                <input autocomplete="off" type="password" class="form-control shadow"
+                                    id="exampleInputPassword1" name="cpassword" [(ngModel)]="cpassword">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Select Role :</label>
+                                <select class="custom-select col-md-12 shadow" name="role" [(ngModel)]="role">
+                                    <option value="Admin">Admin</option>
+                                    <option value="HOD">HOD</option>
+                                    <option value="Teacher">Teacher</option>
+                                    <option value="Student">Student</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <button type="button" (click)="AddNewUser()" class="btn btn-primary shadow">Create
+                                    User</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" style="width:60%;" tabindex="-1" id="EditUser" data-bs-scroll="true"
+        data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <div class="d-flex align-items-center">
+                <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Edit User</h3>
+            </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body data-scrollbar">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="exampleInputEmail1">Name Name :</label>
+                                <input autocomplete="off" type="text" class="form-control shadow" name="fname"
+                                    [(ngModel)]="ufname" id="exampleInputEmail1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Username :</label>
+                                <input autocomplete="off" type="text" class="form-control shadow"
+                                    id="exampleInputPassword1" name="email" [(ngModel)]="uemail">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Password :</label>
+                                <input autocomplete="off" type="password" class="form-control shadow"
+                                    id="exampleInputPassword1" name="password" [(ngModel)]="upassword">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Confirm Password :</label>
+                                <input autocomplete="off" type="password" class="form-control shadow"
+                                    id="exampleInputPassword1" name="cpassword" [(ngModel)]="ucpassword">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Select Role :</label>
+                                <select class="custom-select col-md-12 shadow" name="role" [(ngModel)]="urole">
+                                    <option value="Admin">Admin</option>
+                                    <option value="HOD">HOD</option>
+                                    <option value="Teacher">Teacher</option>
+                                    <option value="Student">Student</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                               
+                            </div>
+                            <div class="form-group col-md-4 buttonSet">
+                                <button type="button" (click)="UpdateUser()" class=" btn btn-primary shadow">Update
+                                    User</button>
+                                <button type="button" (click)="DeleteUser()" class="ml-3 btn btn-danger shadow-danger">Suspend
+                                    User</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

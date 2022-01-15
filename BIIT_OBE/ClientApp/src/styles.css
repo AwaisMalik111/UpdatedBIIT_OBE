@@ -1,0 +1,81 @@
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+.shadow{
+  box-shadow: 0 0.5rem 4rem rgba(27,110,194,.25)!important;
+}
+input:hover{
+  box-shadow: 0 0.5rem 4rem rgba(27,110,194,1.25)!important;
+}
+select:hover{
+  box-shadow: 0 0.5rem 4rem rgba(27,110,194,1.25)!important;
+}
+tr:hover{
+  box-shadow: 0 0.5rem 1rem rgba(27,110,194,.15)!important;
+}
+textarea:hover{
+  box-shadow: 0 0.5rem 1rem rgba(27,110,194,.15)!important;
+}
+button:hover{
+  box-shadow: 0 0.5rem 4rem rgba(27,110,194,1.25)!important;
+}
+svg:hover{
+  box-shadow: 0 0.5rem 4rem rgba(27,110,194,1.25)!important;
+}
+.navbar{
+  height: 65px;
+  width: 101%;
+}
+.spinner-border {
+  margin-top: 19%;
+  display: inline-block;
+  margin-left: 46%;
+  width: 11rem;
+  height: 11rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: 1.75s linear infinite spinner-border;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+.main-content{
+  height: 99%;
+  width: 99%;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+svg{
+  padding: 4px;
+}
+svg:hover{
+  padding: 0px;
+}
+.dataTables_wrapper {
+  padding: 3px !important;
+}
+.sidebar-default .navbar-nav .nav-item .nav-link:not(.disabled).active, .sidebar-default .navbar-nav .nav-item .nav-link:not(.disabled)[aria-expanded=true] {
+  background-color: #1B6EBF !important;
+  color: #fff;
+  -webkit-box-shadow: 0 10px 20px -10px rgb(17 38 146 / 40%);
+  box-shadow: 0 10px 20px -10px rgb(17 38 146 / 40%);
+}
+.shadow-danger{
+  box-shadow: 0 0.5rem 4rem rgba(255,0,0,1.25)!important;
+}
+.buttonSet{
+  text-align: end !important;
+}

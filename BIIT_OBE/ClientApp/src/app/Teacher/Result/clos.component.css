@@ -1,0 +1,5 @@
+.custom_lineBreak {
+    white-space: break-spaces;
+    text-overflow: ellipsis;
+    width: 350px;
+}

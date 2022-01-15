@@ -1,0 +1,85 @@
+<div *ngIf="spinner">
+    <div id="loading">
+        <div class="loader simple-loader">
+          <div class="loader-body"></div>
+        </div>
+      </div>
+</div>
+<div *ngIf="!spinner">
+    <app-hod-sidebar></app-hod-sidebar>
+    <main class="main-content">
+        <app-header></app-header><br>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-7">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="selection" style="font-weight: 900;">Please select the program :</label>
+                        <select class="form-select shadow" id="selection" name="programselection"
+                            [(ngModel)]="programselection" (change)="SelectedProgram_GetCourse()">
+                            <option *ngFor="let item of programs" value={{item.id}}>{{item.pname}}</option>
+                        </select>
+                    </div>
+                    <div class="col-6" style="font-weight: 900;">
+                        <label for="selection">Please select the Course :</label>
+                        <select class="form-select shadow" id="selection" name="programselection"
+                            [(ngModel)]="Courseselection" (change)="SelectedCourse_GetCLOS()">
+                            <option *ngFor="let item of allcourses" value={{item.id}}>{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <br><br>
+        <div class="conatiner-fluid content-inner mt-n5 py-0">
+            <div class="row">
+                <div class="col-md-2 col-lg-2"></div>
+                <div class="col-md-10 col-lg-10">
+                    <br>
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped" data-toggle="data-table">
+                            <thead>
+                                <tr>
+                                    <th>CLO Name</th>
+                                    <th>Quiz</th>
+                                    <th>Assignment</th>
+                                    <th>Lab</th>
+                                    <th>Project</th>
+                                    <th>Mid</th>
+                                    <th>Final</th>
+                                    <th>Total</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                <tr *ngFor="let item of mapclodetails;let idx=index">
+                                    <td>
+                                        <details>
+                                            <summary>
+                                                CLO{{idx+1}}
+                                            </summary>
+                                            <p>{{item.clO_Name}}</p>
+                                            <p class="custom_lineBreak">{{item.clO_Desc}}</p>
+                                        </details>
+                                    </td>
+                                    <td><a href="javascript:void(0)"><u>{{item.quiz}}%</u></a></td>
+                                    <td><a href="javascript:void(0)"><u>{{item.assignment}}%</u></a></td>
+                                    <td><a href="javascript:void(0)"><u>{{item.lab}}%</u></a></td>
+                                    <td><a href="javascript:void(0)"><u>{{item.project}}%</u></a></td>
+                                    <td><a href="javascript:void(0)"><u>{{item.mid}}%</u></a></td>
+                                    <td><a href="javascript:void(0)"><u>{{item.final}}%</u></a></td>
+                                    <td>{{item.final+item.quiz+item.assignment+item.lab+item.project+item.mid}}%</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Section Start -->
+        <app-footer></app-footer>
+        <!-- Footer Section End -->
+    </main>
+</div>

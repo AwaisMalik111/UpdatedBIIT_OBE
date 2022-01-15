@@ -1,0 +1,23 @@
+.header {
+    text-align: center;
+    padding: 10px 16px;
+    background: #1b6ec2;
+    color: #f1f1f1;
+    height: 95px !important;
+  }
+  .footer{
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    background: #1b6ec2;
+    color: #f1f1f1;
+  }
+  .btn{
+      float: right !important;
+  }
+.form-control.ng-invalid.ng-touched.ng-dirty{
+  border: 1px solid red;
+  box-shadow: 0 0.5rem 4rem rgba(255,0,0,1.25)!important;
+}

@@ -1,0 +1,335 @@
+<div *ngIf="spinner">
+    <div id="loading">
+        <div class="loader simple-loader">
+          <div class="loader-body"></div>
+        </div>
+      </div>
+</div>
+<div *ngIf="!spinner">
+    <app-hod-sidebar></app-hod-sidebar>
+    <main class="main-content">
+        <app-header></app-header><br>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary shadow" target="_blank" data-bs-target="#AddNewProgram"
+                    data-bs-toggle="offcanvas">
+                    <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5.91064 20.5886C5.91064 19.7486 6.59064 19.0686 7.43064 19.0686C8.26064 19.0686 8.94064 19.7486 8.94064 20.5886C8.94064 21.4186 8.26064 22.0986 7.43064 22.0986C6.59064 22.0986 5.91064 21.4186 5.91064 20.5886ZM17.1606 20.5886C17.1606 19.7486 17.8406 19.0686 18.6806 19.0686C19.5106 19.0686 20.1906 19.7486 20.1906 20.5886C20.1906 21.4186 19.5106 22.0986 18.6806 22.0986C17.8406 22.0986 17.1606 21.4186 17.1606 20.5886Z"
+                            fill="currentColor"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M20.1907 6.34909C20.8007 6.34909 21.2007 6.55909 21.6007 7.01909C22.0007 7.47909 22.0707 8.13909 21.9807 8.73809L21.0307 15.2981C20.8507 16.5591 19.7707 17.4881 18.5007 17.4881H7.59074C6.26074 17.4881 5.16074 16.4681 5.05074 15.1491L4.13074 4.24809L2.62074 3.98809C2.22074 3.91809 1.94074 3.52809 2.01074 3.12809C2.08074 2.71809 2.47074 2.44809 2.88074 2.50809L5.26574 2.86809C5.60574 2.92909 5.85574 3.20809 5.88574 3.54809L6.07574 5.78809C6.10574 6.10909 6.36574 6.34909 6.68574 6.34909H20.1907ZM14.1307 11.5481H16.9007C17.3207 11.5481 17.6507 11.2081 17.6507 10.7981C17.6507 10.3781 17.3207 10.0481 16.9007 10.0481H14.1307C13.7107 10.0481 13.3807 10.3781 13.3807 10.7981C13.3807 11.2081 13.7107 11.5481 14.1307 11.5481Z"
+                            fill="currentColor"></path>
+                    </svg>
+                    <span>Add new Program</span>
+                </button>
+            </div>
+        </div>
+        <br><br>
+        <div class="
+     content-inner mt-n5 py-0">
+            <div class="row">
+                <div class="col-md-2 col-lg-2"></div>
+                <div class="col-md-10 col-lg-10">
+                    <br>
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped" data-toggle="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Program Name</th>
+                                    <th>Program Description</th>
+                                    <th>PLOs</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                <tr *ngFor="let item of programs">
+                                    <td>{{item.pname}}.</td>
+                                    <td class="custom_lineBreak">{{item.pdesc}}.</td>
+                                    <td><Button class="btn btn-primary shadow" data-bs-target="#AddPlos"
+                                            data-bs-toggle="offcanvas" (click)="ShowPlos(item.id)">PLOS</Button></td>
+                                    <td>
+                                        <a data-toggle="tooltip" data-bs-target="#UpdateProgram"
+                                            (click)="UpdateProgramDetail(item)" data-bs-toggle="offcanvas"
+                                            data-placement="top" title="Edit" class="mr-3" href="javascript:void(0)">
+                                            <svg width="32" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.4"
+                                                    d="M19.9927 18.9534H14.2984C13.7429 18.9534 13.291 19.4124 13.291 19.9767C13.291 20.5422 13.7429 21.0001 14.2984 21.0001H19.9927C20.5483 21.0001 21.0001 20.5422 21.0001 19.9767C21.0001 19.4124 20.5483 18.9534 19.9927 18.9534Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M10.309 6.90385L15.7049 11.2639C15.835 11.3682 15.8573 11.5596 15.7557 11.6929L9.35874 20.0282C8.95662 20.5431 8.36402 20.8344 7.72908 20.8452L4.23696 20.8882C4.05071 20.8903 3.88775 20.7613 3.84542 20.5764L3.05175 17.1258C2.91419 16.4915 3.05175 15.8358 3.45388 15.3306L9.88256 6.95545C9.98627 6.82108 10.1778 6.79743 10.309 6.90385Z"
+                                                    fill="currentColor"></path>
+                                                <path opacity="0.4"
+                                                    d="M18.1208 8.66544L17.0806 9.96401C16.9758 10.0962 16.7874 10.1177 16.6573 10.0124C15.3927 8.98901 12.1545 6.36285 11.2561 5.63509C11.1249 5.52759 11.1069 5.33625 11.2127 5.20295L12.2159 3.95706C13.126 2.78534 14.7133 2.67784 15.9938 3.69906L17.4647 4.87078C18.0679 5.34377 18.47 5.96726 18.6076 6.62299C18.7663 7.3443 18.597 8.0527 18.1208 8.66544Z"
+                                                    fill="currentColor"></path>
+                                            </svg> </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section Start -->
+        <app-footer></app-footer>
+        <!-- Footer Section End -->
+    </main>
+    <!-- Wrapper End-->
+    <!-- offcanvas start -->
+    <div class="offcanvas offcanvas-end" style="width:60%;" tabindex="-1" id="AddNewProgram" data-bs-scroll="true"
+        data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <div class="d-flex align-items-center">
+                <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Add New Program</h3>
+            </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body data-scrollbar">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form method="post">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="exampleInputEmail1">Program Name :</label>
+                                <input autocomplete="off" type="email" class="form-control shadow" name="pname"
+                                    [(ngModel)]="pname" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="exampleInputPassword1">Program Description :</label>
+                                <textarea autocomplete="off" type="text" class="form-control shadow"
+                                    id="exampleInputPassword1" name="pdesc" [(ngModel)]="pdesc"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <button type="button" (click)="AddNewProgram()" class="btn btn-primary shadow">Create
+                                    Program</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" style="width:80%;" tabindex="-1" id="AddPlos" data-bs-scroll="true"
+        data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <div class="d-flex align-items-center">
+                <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">PLOs</h3>
+            </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body data-scrollbar">
+            <details>
+                <summary>
+                    <h3 class="btn btn-primary rounded-pill shadow">+</h3>
+                </summary>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="ploname">PLO Heading :</label>
+                                <input autocomplete="off" id="ploname" class="form-control shadow" name="plo"
+                                    [(ngModel)]="newploHeading" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="ploname">PLO Passing Marks :</label>
+                                <input type="text" autocomplete="off" id="ploname" class="form-control shadow"
+                                    name="plo" [(ngModel)]="newploPassign" />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="ploname">PLO Description :</label>
+                                <textarea autocomplete="off" id="ploname" class="form-control shadow" name="plo"
+                                    [(ngModel)]="newploDesc"></textarea>
+                            </div>
+                        </div><br><br>
+                        <details>
+                            <summary>
+                                <p class="btn btn-primary shadow">Add PLOs from Database</p>
+                            </summary>
+                            <div class="row ml-3">
+                                <div class="form-group col-md-2" *ngFor="let item of UnassignedPLOS;let idx=index;">
+                                    <input autocomplete="off" (click)="SelectedPLOs(item,idx,$event.target.checked)"
+                                        class="form-check-input shadow" type="checkbox" value="">
+                                    <details>
+                                        <summary>
+                                            {{item.ploname}}
+                                        </summary>
+                                        <small> {{item.plodesc}}</small>
+
+                                    </details>
+                                </div>
+                            </div>
+                        </details>
+                        <div class="row">
+                            <div class="col-md-10"></div>
+                            <div class="form-group col-md-2">
+                                <button type="button" (click)="AssignPlos()" style="margin-left: 48%;"
+                                    class="btn btn-primary shadow">Add
+                                    PLO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <br>
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped" data-toggle="data-table">
+                            <thead>
+                                <tr>
+                                    <th>PLO Name</th>
+                                    <th>PLO Description</th>
+                                    <th>PLO Passing Percentage</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                <tr *ngFor="let item of plos;let idx=index">
+                                    <td>PLO{{idx+1}}.</td>
+                                    <td>
+                                        <details>
+                                            <summary>
+                                                {{item.ploname}} :
+                                            </summary>
+                                            <div class="custom_lineBreak">
+                                                <small> {{item.plodesc}}.</small>
+                                            </div>
+                                        </details>
+                                    </td>
+                                    <td>
+                                        {{item.plopass}}%
+                                    </td>
+                                    <td>
+                                        <a data-toggle="tooltip" data-bs-target="#UpdatePLO"
+                                            (click)="UpdatePLODetail(item)" data-bs-toggle="offcanvas"
+                                            data-placement="top" title="Edit" class="mr-3" href="javascript:void(0)">
+                                            <svg width="32" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.4"
+                                                    d="M19.9927 18.9534H14.2984C13.7429 18.9534 13.291 19.4124 13.291 19.9767C13.291 20.5422 13.7429 21.0001 14.2984 21.0001H19.9927C20.5483 21.0001 21.0001 20.5422 21.0001 19.9767C21.0001 19.4124 20.5483 18.9534 19.9927 18.9534Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M10.309 6.90385L15.7049 11.2639C15.835 11.3682 15.8573 11.5596 15.7557 11.6929L9.35874 20.0282C8.95662 20.5431 8.36402 20.8344 7.72908 20.8452L4.23696 20.8882C4.05071 20.8903 3.88775 20.7613 3.84542 20.5764L3.05175 17.1258C2.91419 16.4915 3.05175 15.8358 3.45388 15.3306L9.88256 6.95545C9.98627 6.82108 10.1778 6.79743 10.309 6.90385Z"
+                                                    fill="currentColor"></path>
+                                                <path opacity="0.4"
+                                                    d="M18.1208 8.66544L17.0806 9.96401C16.9758 10.0962 16.7874 10.1177 16.6573 10.0124C15.3927 8.98901 12.1545 6.36285 11.2561 5.63509C11.1249 5.52759 11.1069 5.33625 11.2127 5.20295L12.2159 3.95706C13.126 2.78534 14.7133 2.67784 15.9938 3.69906L17.4647 4.87078C18.0679 5.34377 18.47 5.96726 18.6076 6.62299C18.7663 7.3443 18.597 8.0527 18.1208 8.66544Z"
+                                                    fill="currentColor"></path>
+                                            </svg> </a>
+                                        <a class="mr-3" data-toggle="tooltip" data-placement="top" title="Delete"
+                                            href="javascript:void(0);" (click)="DeletePLO(item.id)"> <svg width="32"
+                                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.4"
+                                                    d="M19.643 9.48851C19.643 9.5565 19.11 16.2973 18.8056 19.1342C18.615 20.8751 17.4927 21.9311 15.8092 21.9611C14.5157 21.9901 13.2494 22.0001 12.0036 22.0001C10.6809 22.0001 9.38741 21.9901 8.13185 21.9611C6.50477 21.9221 5.38147 20.8451 5.20057 19.1342C4.88741 16.2873 4.36418 9.5565 4.35445 9.48851C4.34473 9.28351 4.41086 9.08852 4.54507 8.93053C4.67734 8.78453 4.86796 8.69653 5.06831 8.69653H18.9388C19.1382 8.69653 19.3191 8.78453 19.4621 8.93053C19.5953 9.08852 19.6624 9.28351 19.643 9.48851Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M21 5.97686C21 5.56588 20.6761 5.24389 20.2871 5.24389H17.3714C16.7781 5.24389 16.2627 4.8219 16.1304 4.22692L15.967 3.49795C15.7385 2.61698 14.9498 2 14.0647 2H9.93624C9.0415 2 8.26054 2.61698 8.02323 3.54595L7.87054 4.22792C7.7373 4.8219 7.22185 5.24389 6.62957 5.24389H3.71385C3.32386 5.24389 3 5.56588 3 5.97686V6.35685C3 6.75783 3.32386 7.08982 3.71385 7.08982H20.2871C20.6761 7.08982 21 6.75783 21 6.35685V5.97686Z"
+                                                    fill="currentColor"></path>
+                                            </svg> </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" style="width:60%;" tabindex="-1" id="UpdateProgram" data-bs-scroll="true"
+        data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <div class="d-flex align-items-center">
+                <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Edit Program</h3>
+            </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body data-scrollbar">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form method="post">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="exampleInputEmail1">Program Name :</label>
+                                <input autocomplete="off" type="email" class="form-control shadow" name="pname"
+                                    [(ngModel)]="upname" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="exampleInputPassword1">Program Description :</label>
+                                <textarea autocomplete="off" type="text" class="form-control shadow"
+                                    id="exampleInputPassword1" name="pdesc" [(ngModel)]="updesc"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                               
+                            </div>
+                            <div class="form-group col-md-4 buttonSet">
+                                <button type="button" (click)="UpdateProgram()" class="btn btn-primary shadow">Update
+                                    Program</button>
+                                <button type="button" (click)="DeleteProgram()" class="ml-3 btn btn-danger shadow-danger">Delete</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="form-group col-md-6">
+                             
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" style="width:60%;" tabindex="-1" id="UpdatePLO" data-bs-scroll="true"
+        data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <div class="d-flex align-items-center">
+                <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Edit PLO</h3>
+            </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body data-scrollbar">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form method="post">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">PLO Heading :</label>
+                                <input autocomplete="off" type="text" class="form-control shadow" name="upname"
+                                    [(ngModel)]="upploname" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">PLO Passing Marks :</label>
+                                <input autocomplete="off" type="text" class="form-control shadow" name="pname"
+                                    [(ngModel)]="unewploPassign" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="exampleInputPassword1">PLO Description :</label>
+                                <textarea autocomplete="off" type="text" style="height:150px"
+                                    class="form-control shadow" id="exampleInputPassword1" name="pdesc"
+                                    [(ngModel)]="upplodesc"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <button type="button" (click)="Updateplo()" class="btn btn-primary shadow">Update
+                                    PLO</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

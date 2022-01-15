@@ -1,0 +1,44 @@
+.navigation {
+    width: 100%;
+    background-color: black;
+}
+
+svg {
+    float: left;
+}
+
+.logout {
+    font-size: .8em;
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+    bottom: -8px;
+    overflow: hidden;
+    letter-spacing: 3px;
+    opacity: 0;
+    transition: opacity .45s;
+    -webkit-transition: opacity .35s;
+
+}
+
+.button {
+    text-decoration: none;
+    float: right;
+    margin: 15px;
+    color: white;
+    width: 25px;
+    transition: width .35s;
+    -webkit-transition: width .35s;
+    overflow: hidden
+}
+
+a:hover {
+    width: 100px;
+}
+
+a:hover .logout {
+    opacity: .9;
+}
+
+a {
+    text-decoration: none;
+}

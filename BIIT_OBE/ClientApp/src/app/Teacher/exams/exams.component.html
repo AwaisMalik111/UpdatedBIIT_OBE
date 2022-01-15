@@ -1,0 +1,103 @@
+<div *ngIf="spinner">
+    <div id="loading">
+        <div class="loader simple-loader">
+          <div class="loader-body"></div>
+        </div>
+      </div>
+</div>
+<app-tsidebar></app-tsidebar>
+<main class="main-content">
+    <app-header></app-header>
+    <br><br>
+    <div class="conatiner-fluid content-inner mt-n5 py-0">
+        <div class="row">
+            <div class="col-md-2 col-lg-2"></div>
+            <div class="col-md-10 col-lg-10">
+                <br>
+                <div class="table-responsive">
+                    <table id="datatable" class="table table-striped" data-toggle="data-table">
+                        <thead>
+                            <tr>
+                                <th>CLO Details</th>
+                                <th>Course Name</th>
+                                <th>Section</th>
+                                <th>ExamType</th>
+                                <th>Total Question</th>
+                                <th>Total Marks</th>
+                                <th>CLO Evaluation</th>
+                                <th>Add Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of AllExams">
+                                <td>
+                                    <details>
+                                        <summary>
+                                            CLO{{item.id}}
+                                        </summary>
+                                        <small class="custom_lineBreak">{{item.cloname}} : {{item.clodesc}}</small>
+                                    </details>
+                                </td>
+                                <td>{{item.course_name}}</td>
+                                <td>{{item.section}}</td>
+                                <td>{{item.assessmentType}}</td>
+                                <td>{{item.totalQuestion}}</td>
+                                <td>{{item.totalMark}}</td>
+                                <td>{{item.clo}}%</td>
+                                <td><button class="btn btn-primary shadow rounded-pill" data-bs-target="#AddNewResults"
+                                        data-bs-toggle="offcanvas"
+                                        (click)="GetExamMarks(item.examid,item.section,item.assessmentType,item.course_name,item.totalMark)">+</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Section Start -->
+    <app-footer></app-footer>
+    <!-- Footer Section End -->
+</main>
+<div class="offcanvas offcanvas-end" style="width:80%;" tabindex="-1" id="AddNewResults" data-bs-scroll="true"
+    data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <div class="d-flex align-items-center">
+            <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Add Results</h3>
+        </div>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body data-scrollbar">
+        <hr>
+        <hr>
+        <div class="row">
+            <div class="col-4"><b>Section</b> : {{section}}</div>
+            <div class="col-4"><b>Course</b> : {{coursename}}</div>
+            <div class="col-4"><b>Exam Type </b>: {{examtype}}</div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="datatable" class="table table-striped" data-toggle="data-table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Registration Number</th>
+                            <th>Add Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of Allstudents">
+                            <td>{{item.name}}</td>
+                            <td>{{item.remail}}</td>
+                            <td><input type="text" class="shadow" style="border: aliceblue;width: 20%;"
+                                    (change)="getMraks(item.remail,$event.target.value)"> /{{totalMarks}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary shadow" (click)="SaveResult()">Save Result</button>
+            </div>
+        </div>
+    </div>
+</div>

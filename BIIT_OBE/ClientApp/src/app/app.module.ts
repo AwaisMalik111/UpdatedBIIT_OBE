@@ -1,0 +1,89 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule, } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './Admin/header/header.component';
+import { SidebarComponent } from './Admin/sidebar/sidebar.component';
+import { LoginComponent } from './login/login.component';
+import { TeacherComponent } from './Admin/teacher/teacher.component';
+import { CLOManagementComponent } from './HOD/clo-management/clo-management.component';
+import { PloMappingComponent } from './HOD/Result/plo-mapping.component';
+import { ProgramComponent } from './HOD/program/program.component';
+import { CoursesComponent } from './HOD/course/courses.component';
+import { FooterComponent } from './Admin/footer/footer.component';
+import { UserDetailsComponent } from './Admin/user-details/user-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TsidebarComponent } from './Teacher/tsidebar/tsidebar.component';
+import { AllocationComponent } from './HOD/allocation/allocation.component';
+import { HODSidebarComponent } from './HOD/hod-sidebar/hod-sidebar.component';
+import { HclosComponent } from './HOD/CLOsSummary/hclos.component';
+import { PlosComponent } from './HOD/PLOsSummary/plos.component';
+import { ClosComponent } from './Teacher/Result/clos.component';
+import { ExamsComponent } from './Teacher/exams/exams.component';
+import { ResultComponent } from './Student/result/result.component';
+import { AssignedCoursesComponent } from './Teacher/assigned-courses/assigned-courses.component';
+
+@NgModule({
+  declarations: [
+    ResultComponent,
+    PloMappingComponent,
+    CLOManagementComponent,
+    HclosComponent,
+    PlosComponent,
+    AssignedCoursesComponent,
+    ExamsComponent,
+    ClosComponent,
+    HODSidebarComponent,
+    AllocationComponent,
+    TsidebarComponent,
+    AppComponent,
+    FooterComponent,
+    LoginComponent,
+    TeacherComponent,
+    ProgramComponent,
+    CoursesComponent,
+    SidebarComponent,
+    HeaderComponent,
+    UserDetailsComponent
+  ],
+  imports: [
+    ReactiveFormsModule,
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot([
+      { path: '', component: LoginComponent, pathMatch: 'full' },
+      { path: 'teacher', component: TeacherComponent, }, //for admin
+      { path: 'userdetails', component: UserDetailsComponent, }, //for admin
+      //for Hod
+      { path: 'program', component: ProgramComponent, },
+      { path: 'course', component: CoursesComponent, },
+      { path: 'allocation', component: AllocationComponent, },
+      { path: 'clos', component: HclosComponent, },
+      { path: 'plos', component: PlosComponent, },
+      { path: 'HodViewResult', component: PloMappingComponent, },
+      { path: 'CLOAssessment', component: CLOManagementComponent, },
+      //for teachers
+      { path: 'AssignedCoursesComponent', component: AssignedCoursesComponent, },
+      { path: 'TeacherViewResult', component: ClosComponent, },
+      { path: 'ExamsComponent', component: ExamsComponent, },
+      {path:'StudentViewResult',component:ResultComponent}
+    ]),
+    BrowserAnimationsModule,
+    // ToastrModule.forRoot({
+    //   closeButton:true,
+    //   progressBar:true,
+    //   progressAnimation:'increasing',
+    //   tapToDismiss:true,
+    //   onActivateTick:true,
+    //   extendedTimeOut:1000,
+    //   enableHtml:true
+    // }),
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
