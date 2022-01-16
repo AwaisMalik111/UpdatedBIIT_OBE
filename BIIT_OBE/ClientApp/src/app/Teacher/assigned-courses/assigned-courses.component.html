@@ -34,6 +34,7 @@
                                 <th>Course Title</th>
                                 <th>Course Code</th>
                                 <th>Section</th>
+                                <th>CLOs</th>
                                 <th>Add Exams</th>
                             </tr>
                         </thead>
@@ -42,6 +43,9 @@
                                 <td>{{item.course_Title}}</td>
                                 <td>{{item.course_Code}}</td>
                                 <td>{{item.section}}</td>
+                                <td><input (click)="Closmanagement(item.course_Title)" class="btn btn-primary"
+                                        type="button"
+                                        value="CLOS"></td>
                                 <td><input (click)="GetCourseDetails(item)" class="btn btn-primary rounded-pill"
                                         data-bs-target="#AddAssessment" data-bs-toggle="offcanvas" type="button"
                                         value="+"></td>

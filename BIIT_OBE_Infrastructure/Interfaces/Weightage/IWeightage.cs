@@ -21,5 +21,6 @@ namespace BIIT_OBE_Infrastructure.Interfaces.Weightage
         public Task<List<AssignWeightage>> GetCoursesCLOS(CLO_PLO_Mapping obj);
         public Task<List<AssignWeightage>> GetAlreadySetWeightageOfPLO();
         public Task<List<AddExam>> getAllExams();
+        public Task<bool> TeacherMapPloWithClo(CLO_PLO_Mapping obj);
     }
 }

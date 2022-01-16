@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalService } from '../../Admin/services/global.service'
+import { Courses, GlobalService } from '../../Admin/services/global.service'
 import { UserService } from '../../Admin/services/user.service'
 import { Router } from '@angular/router';
 declare const $: any;
@@ -114,5 +114,9 @@ export class AssignedCoursesComponent implements OnInit {
           this.ngOnInit();
         }
       });
+  }
+  Closmanagement(x){
+    Courses.coursename=x;
+    this.rout.navigate(['/Closmanagement']);
   }
 }

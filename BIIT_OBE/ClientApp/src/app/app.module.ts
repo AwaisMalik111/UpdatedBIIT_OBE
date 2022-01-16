@@ -25,9 +25,11 @@ import { ClosComponent } from './Teacher/Result/clos.component';
 import { ExamsComponent } from './Teacher/exams/exams.component';
 import { ResultComponent } from './Student/result/result.component';
 import { AssignedCoursesComponent } from './Teacher/assigned-courses/assigned-courses.component';
+import { TeacherClosComponent } from './Teacher/teacher-clos/teacher-clos.component';
 
 @NgModule({
   declarations: [
+    TeacherClosComponent,
     ResultComponent,
     PloMappingComponent,
     CLOManagementComponent,
@@ -70,6 +72,7 @@ import { AssignedCoursesComponent } from './Teacher/assigned-courses/assigned-co
       { path: 'AssignedCoursesComponent', component: AssignedCoursesComponent, },
       { path: 'TeacherViewResult', component: ClosComponent, },
       { path: 'ExamsComponent', component: ExamsComponent, },
+      { path: 'Closmanagement', component: TeacherClosComponent, },
       {path:'StudentViewResult',component:ResultComponent}
     ]),
     BrowserAnimationsModule,

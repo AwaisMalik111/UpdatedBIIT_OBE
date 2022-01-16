@@ -37,6 +37,12 @@ namespace BIIT_OBE.Controllers
             bool response = await _weightage.MapPloWithClo(obj);
             return response;
         }
+        [HttpPost("TeacherMapPloWithClo")]
+        public async Task<bool> TeacherMapPloWithClo(CLO_PLO_Mapping obj)
+        {
+            bool response = await _weightage.TeacherMapPloWithClo(obj);
+            return response;
+        }
         [HttpPost("GetRemainingPLOWeightage")]
         public async Task<List<CLO_PLO_Mapping>> GetRemainingPLOWeightage([FromBody] CLO_PLO_Mapping obj)
         {

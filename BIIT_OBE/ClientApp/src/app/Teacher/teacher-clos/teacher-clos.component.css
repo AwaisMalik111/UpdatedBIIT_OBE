@@ -1,0 +1,9 @@
+.set-slign{
+    margin-left: 70%;
+    margin-top: -7.5%;
+}
+.custom_lineBreak {
+    white-space: break-spaces;
+    text-overflow: ellipsis;
+    width: 350px;
+}

@@ -410,5 +410,28 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 throw;
             }
         }
+        public async Task<bool> TeacherMapPloWithClo(CLO_PLO_Mapping obj)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                for (int i = 0; i < obj.PLO_Id.Count; i++)
+                {
+                    string query = "CLO_PLO_Mapping";
+                    SqlCommand com1 = new SqlCommand(query, con);
+                    com1.CommandType = CommandType.StoredProcedure;
+                    com1.Parameters.AddWithValue("coursename", obj.coursename);
+                    com1.Parameters.AddWithValue("CLO_Id", obj.CLO_Id);
+                    com1.Parameters.AddWithValue("PLO_Id", obj.PLO_Id[i].id);
+                    com1.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
