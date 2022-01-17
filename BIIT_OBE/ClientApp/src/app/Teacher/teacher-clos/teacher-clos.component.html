@@ -61,8 +61,8 @@
                                         </div>
                                     </td>
                                     <td><Button (click)="GetCLODetail(item,'Assessment')" class="btn btn-primary"
-                                        data-bs-target="#CloWeightage" data-bs-toggle="offcanvas">Assesment</Button>
-                                </td>
+                                            data-bs-target="#CloWeightage" data-bs-toggle="offcanvas">Assesment</Button>
+                                    </td>
                                     <td><Button (click)="GetCLODetail(item,'PLO weightage')" class="btn btn-primary"
                                             data-bs-target="#MapPLO" data-bs-toggle="offcanvas">Map PLOs</Button>
                                     </td>
@@ -193,277 +193,206 @@
                 </div>
             </div>
             <hr>
-
-            <div *ngIf="AssignPlos_check">
-                <hr>
-                Mapped PLOS
-                <hr>
-                <table id="datatable" class="table table-striped" data-toggle="data-table">
-                    <thead>
-                        <tr>
-                            <th>Mapped PLOs</th>
-                            <th>Assign Percentage</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        <tr *ngFor="let item of plodetails;let idx=index">
-                            <td>
-                                <input autocomplete="off" checked
-                                    (change)="SelectedPLOsArray(item.id,idx,$event.target.checked)" class="shadow"
-                                    type="checkbox" value="">
-                                <label for="">PLO{{item.id}}</label>
-                            </td>
-
-                            <td>
-                                <input type="number" id="{{item.id}}"
-                                    (change)="getWeightageArray($event.target.value,item.id)"
-                                    class="form-control shadow" min="0" max="100" value="{{item.value}}">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="row">
-                    <div class="col-md-10"></div>
-                    <div class="form-group col-md-2">
-                        <button type="button" class="btn btn-primary shadow" (click)="MapPloWithClo()">Update
-                            PLOs</button>
-                    </div>
-                </div>
-            </div>
-            <details>
-                <summary>
-                    <h2 class="btn btn-primary rounded-pill shadow">+</h2>
-                </summary>
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5>PLO</h5>
-                    </div>
-                </div>
-                <div class="row ml-2" *ngFor="let item of ALLplos;let idx=index">
-                    <div class="col-md-4">
-                        <input autocomplete="off" (change)="SelectedPLOsArray(item.id,idx,$event.target.checked)"
-                            class="form-check-input shadow" type="checkbox" value="">
+            <div class="row ml-2" *ngFor="let item of plodetails;let idx=index">
+                <div class="col-md-4">
+                    <input autocomplete="off" (change)="SelectedPLOsArray(item.id,idx,$event.target.checked)"
+                        class="form-check-input shadow" type="checkbox" value="">
                         <details>
-                            <summary>PLO{{item.id}}</summary>
-                            <small>{{item.ploname}} : {{item.plodesc}}</small>
+                            <summary>PLO{{item.clO_Id}}</summary>
+                            <small>{{item.ploname}} : {{item.plodes}}</small>
                         </details>
-                    </div>
-                </div>
+                </div><br><br>
+            </div>
+            <div>
                 <div class="row">
                     <div class="col-md-10"></div>
                     <div class="form-group col-md-2">
-                        <button type="button" class="btn btn-primary shadow" (click)="MapPloWithClo()">Assign
+                        <button type="button" class="btn btn-primary shadow" (click)="MapPloWithClo()">Save
                             PLOs</button>
                     </div>
                 </div>
-            </details>
-            <div>
-                <hr>
-                Mapped PLOS To Other CLOS
-                <hr>
-                <table id="datatable" class="table table-striped" data-toggle="data-table">
-                    <thead>
-                        <tr>
-                            <th>PLO Name</th>
-                            <th>Remaining Percentage</th>
-                            <th>Total Assign Percentage</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        <tr *ngFor="let item of GetAlreadySetWeightageOfPLOValue;let idx=index">
-                            <td>PLO{{item.clO_Id}}</td>
-
-                            <td>
-                                {{100-item.final}}%
-                            </td>
-                            <td>
-                                <a href="javascript:void(0)" (click)="GotoPLOSummary()"><u> {{item.final}}%</u></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
     <div class="offcanvas offcanvas-end" style="width:80%;" tabindex="-1" id="CloWeightage" data-bs-scroll="true"
-    data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-        <div class="d-flex align-items-center">
-            <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Set CLO's Assesment : </h3>
+        data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <div class="d-flex align-items-center">
+                <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Set CLO's Assesment : </h3>
+            </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body data-scrollbar">
-        <hr>
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Course Name : <small>{{CourseName}}</small></h5>
-            </div>
-            <div class="col-md-4">
-                <h5>CLO Name : <small>{{uCloname}}</small></h5>
-            </div>
-            <div class="col-md-4">
-                <h5>CLO Description : <small>{{uClodesc}}</small></h5>
-            </div>
-        </div>
-        <hr>
-        <div class="row" *ngIf="!Assessment_check">
-            <div class="col-lg-12">
-                <div class="row ml-3">
-                    <div class="form-group col-md-4">
-                        <input autocomplete="off" class="form-check-input shadow"
-                            (click)="quizzes($event.target.checked)" type="checkbox" value="">
-                        <label class="form-check-label">
-                            Quizzes
-                        </label>
-                        <input type="number" id="quizzes" name="quiz" disabled class="form-control shadow set-slign"
-                            min="0" max="100" placeholder="0 - 100" [(ngModel)]="mark_quiz">
-                    </div>
-                </div>
-                <div class="row ml-3">
-                    <div class="form-group col-md-4">
-                        <input autocomplete="off" (click)="assignment($event.target.checked)"
-                            class="form-check-input shadow" type="checkbox" value="">
-                        <label class="form-check-label">
-                            Assignment
-                        </label>
-                        <input type="number" [(ngModel)]="mark_assignment" name="assignment" min="0" disabled
-                            max="100" id="assignment" class="form-control set-slign shadow" placeholder="0 - 100">
-                    </div>
-                </div>
-                <div class="row ml-3">
-                    <div class="form-group col-md-4">
-                        <input autocomplete="off" (click)="lab($event.target.checked)"
-                            class="form-check-input shadow" type="checkbox" value="">
-                        <label class="form-check-label">
-                            Lab
-                        </label>
-                        <input type="number" min="0" [(ngModel)]="mark_lab" name="lab" max="100" disabled id="lab"
-                            placeholder="0 - 100" class="form-control set-slign shadow">
-                    </div>
-                </div>
-                <div class="row ml-3">
-                    <div class="form-group col-md-4">
-                        <input autocomplete="off" (click)="mid($event.target.checked)"
-                            class="form-check-input shadow" type="checkbox" value="">
-                        <label class="form-check-label">
-                            Mid Term
-                        </label>
-                        <input type="number" id="mid" min="0" max="100" disabled [(ngModel)]="mark_mid" name="mid"
-                            placeholder="0 - 100" class="form-control set-slign shadow">
-                    </div>
-                </div>
-                <div class="row ml-3">
-                    <div class="form-group col-md-4">
-                        <input autocomplete="off" (click)="final($event.target.checked)"
-                            class="form-check-input shadow" type="checkbox" value="">
-                        <label class="form-check-label">
-                            Final Term
-                        </label>
-                        <input type="number" min="0" id="final" max="100" [(ngModel)]="mark_final" name="final"
-                            disabled placeholder="0 - 100" class="form-control set-slign shadow">
-                    </div>
-                </div>
-                <div class="row ml-3">
-                    <div class="form-group col-md-4">
-                        <input autocomplete="off" (click)="project($event.target.checked)"
-                            class="form-check-input shadow" type="checkbox" value="">
-                        <label class="form-check-label">
-                            Project / Presentations
-                        </label>
-                        <input type="number" min="0" id="project" [(ngModel)]="mark_project" name="project"
-                            max="100" disabled placeholder="0 - 100" class="form-control set-slign shadow">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-10"></div>
-                    <div class="form-group col-md-2">
-                        <button type="button" (click)="CLO_Assessment('Addnew')" class="btn btn-primary">Save
-                            Assessment</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="Assessment_check">
+        <div class="offcanvas-body data-scrollbar">
+            <hr>
             <div class="row">
+                <div class="col-md-4">
+                    <h5>Course Name : <small>{{CourseName}}</small></h5>
+                </div>
+                <div class="col-md-4">
+                    <h5>CLO Name : <small>{{uCloname}}</small></h5>
+                </div>
+                <div class="col-md-4">
+                    <h5>CLO Description : <small>{{uClodesc}}</small></h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row" *ngIf="!Assessment_check">
                 <div class="col-lg-12">
                     <div class="row ml-3">
                         <div class="form-group col-md-4">
                             <input autocomplete="off" class="form-check-input shadow"
-                                (click)="quizzes($event.target.checked)" checked type="checkbox" value="">
+                                (click)="quizzes($event.target.checked)" type="checkbox" value="">
                             <label class="form-check-label">
                                 Quizzes
                             </label>
-                            <input type="number" id="quizzes" name="quiz" class="form-control shadow set-slign"
-                                min="0" max="100" placeholder="0 - 100" [(ngModel)]="Alreadysetquiz">
+                            <input type="number" id="quizzes" name="quiz" disabled class="form-control shadow set-slign"
+                                min="0" max="100" placeholder="0 - 100" [(ngModel)]="mark_quiz">
                         </div>
                     </div>
                     <div class="row ml-3">
                         <div class="form-group col-md-4">
-                            <input autocomplete="off" checked (click)="assignment($event.target.checked)"
+                            <input autocomplete="off" (click)="assignment($event.target.checked)"
                                 class="form-check-input shadow" type="checkbox" value="">
                             <label class="form-check-label">
                                 Assignment
                             </label>
-                            <input type="number" [(ngModel)]="Alreadysetassignment" name="assignment" min="0"
-                                max="100" id="assignment" class="form-control set-slign shadow"
-                                placeholder="0 - 100">
+                            <input type="number" [(ngModel)]="mark_assignment" name="assignment" min="0" disabled
+                                max="100" id="assignment" class="form-control set-slign shadow" placeholder="0 - 100">
                         </div>
                     </div>
                     <div class="row ml-3">
                         <div class="form-group col-md-4">
-                            <input autocomplete="off" checked (click)="lab($event.target.checked)"
+                            <input autocomplete="off" (click)="lab($event.target.checked)"
                                 class="form-check-input shadow" type="checkbox" value="">
                             <label class="form-check-label">
                                 Lab
                             </label>
-                            <input type="number" min="0" [(ngModel)]="Alreadysetlab" name="lab" max="100" id="lab"
+                            <input type="number" min="0" [(ngModel)]="mark_lab" name="lab" max="100" disabled id="lab"
                                 placeholder="0 - 100" class="form-control set-slign shadow">
                         </div>
                     </div>
                     <div class="row ml-3">
                         <div class="form-group col-md-4">
-                            <input autocomplete="off" checked (click)="mid($event.target.checked)"
+                            <input autocomplete="off" (click)="mid($event.target.checked)"
                                 class="form-check-input shadow" type="checkbox" value="">
                             <label class="form-check-label">
                                 Mid Term
                             </label>
-                            <input type="number" id="mid" min="0" max="100" [(ngModel)]="Alreadysetmid" name="mid"
+                            <input type="number" id="mid" min="0" max="100" disabled [(ngModel)]="mark_mid" name="mid"
                                 placeholder="0 - 100" class="form-control set-slign shadow">
                         </div>
                     </div>
                     <div class="row ml-3">
                         <div class="form-group col-md-4">
-                            <input autocomplete="off" checked (click)="final($event.target.checked)"
+                            <input autocomplete="off" (click)="final($event.target.checked)"
                                 class="form-check-input shadow" type="checkbox" value="">
                             <label class="form-check-label">
                                 Final Term
                             </label>
-                            <input type="number" min="0" id="final" max="100" [(ngModel)]="Alreadysetfinal"
-                                name="final" placeholder="0 - 100" class="form-control set-slign shadow">
+                            <input type="number" min="0" id="final" max="100" [(ngModel)]="mark_final" name="final"
+                                disabled placeholder="0 - 100" class="form-control set-slign shadow">
                         </div>
                     </div>
                     <div class="row ml-3">
                         <div class="form-group col-md-4">
-                            <input autocomplete="off" checked (click)="project($event.target.checked)"
+                            <input autocomplete="off" (click)="project($event.target.checked)"
                                 class="form-check-input shadow" type="checkbox" value="">
                             <label class="form-check-label">
                                 Project / Presentations
                             </label>
-                            <input type="number" min="0" id="project" [(ngModel)]="Alreadysetproject" name="project"
-                                max="100" placeholder="0 - 100" class="form-control set-slign shadow">
+                            <input type="number" min="0" id="project" [(ngModel)]="mark_project" name="project"
+                                max="100" disabled placeholder="0 - 100" class="form-control set-slign shadow">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="form-group col-md-2">
-                            <button type="button" (click)="CLO_Assessment('update')" class="btn btn-primary">Update
+                            <button type="button" (click)="CLO_Assessment('Addnew')" class="btn btn-primary">Save
                                 Assessment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="Assessment_check">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row ml-3">
+                            <div class="form-group col-md-4">
+                                <input autocomplete="off" class="form-check-input shadow"
+                                    (click)="quizzes($event.target.checked)" checked type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Quizzes
+                                </label>
+                                <input type="number" id="quizzes" name="quiz" class="form-control shadow set-slign"
+                                    min="0" max="100" placeholder="0 - 100" [(ngModel)]="Alreadysetquiz">
+                            </div>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="form-group col-md-4">
+                                <input autocomplete="off" checked (click)="assignment($event.target.checked)"
+                                    class="form-check-input shadow" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Assignment
+                                </label>
+                                <input type="number" [(ngModel)]="Alreadysetassignment" name="assignment" min="0"
+                                    max="100" id="assignment" class="form-control set-slign shadow"
+                                    placeholder="0 - 100">
+                            </div>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="form-group col-md-4">
+                                <input autocomplete="off" checked (click)="lab($event.target.checked)"
+                                    class="form-check-input shadow" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Lab
+                                </label>
+                                <input type="number" min="0" [(ngModel)]="Alreadysetlab" name="lab" max="100" id="lab"
+                                    placeholder="0 - 100" class="form-control set-slign shadow">
+                            </div>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="form-group col-md-4">
+                                <input autocomplete="off" checked (click)="mid($event.target.checked)"
+                                    class="form-check-input shadow" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Mid Term
+                                </label>
+                                <input type="number" id="mid" min="0" max="100" [(ngModel)]="Alreadysetmid" name="mid"
+                                    placeholder="0 - 100" class="form-control set-slign shadow">
+                            </div>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="form-group col-md-4">
+                                <input autocomplete="off" checked (click)="final($event.target.checked)"
+                                    class="form-check-input shadow" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Final Term
+                                </label>
+                                <input type="number" min="0" id="final" max="100" [(ngModel)]="Alreadysetfinal"
+                                    name="final" placeholder="0 - 100" class="form-control set-slign shadow">
+                            </div>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="form-group col-md-4">
+                                <input autocomplete="off" checked (click)="project($event.target.checked)"
+                                    class="form-check-input shadow" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Project / Presentations
+                                </label>
+                                <input type="number" min="0" id="project" [(ngModel)]="Alreadysetproject" name="project"
+                                    max="100" placeholder="0 - 100" class="form-control set-slign shadow">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10"></div>
+                            <div class="form-group col-md-2">
+                                <button type="button" (click)="CLO_Assessment('update')" class="btn btn-primary">Update
+                                    Assessment</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

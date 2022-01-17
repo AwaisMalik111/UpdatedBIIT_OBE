@@ -13,7 +13,9 @@ namespace BIIT_OBE_Infrastructure.Interfaces.Weightage
         public Task<bool> AssingMarksUpdate(AssignWeightage obj);
         public Task<bool> MapPloWithClo(CLO_PLO_Mapping obj);
         public Task<bool> AddNewExam(AddExam obj);
+        public Task<bool> TeacherAssingMarks(AssignWeightage obj);
         public Task<List<CLO_PLO_Mapping>> GetRemainingPLOWeightage(CLO_PLO_Mapping obj);
+        public Task<List<CLO_PLO_Mapping>> TeacherGetAlreadySetWeightageOfPLO(CLO_PLO_Mapping obj);
         public Task<List<PLO_List>> GetAlreadySetPLOWeightage(CLO_PLO_Mapping obj);
         public Task<List<AssignWeightage>> GetCLOSAssessment(CLO_PLO_Mapping obj);
         public Task<List<AssignWeightage>> CLO_Assessment_Check(CLO_PLO_Mapping obj);

@@ -162,6 +162,34 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 throw;
             }
         }
+        public async Task<List<CLOsModal>> TeacherGetAllCLOs(CLOsModal clo)
+        {
+            try
+            {
+                List<CLOsModal> list = new List<CLOsModal>();
+                CLOsModal obj;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "TeacherGetAllCLOs";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("Coursename", clo.Coursename);
+                SqlDataReader sdr = com.ExecuteReader();
+                while (sdr.Read())
+                {
+                    obj = new CLOsModal();
+                    obj.cloName = sdr["CLO"].ToString();
+                    obj.cloDesc = sdr["Desc"].ToString();
+                    list.Add(obj);
+                }
+                con.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task<List<CourseModal>> GetAllCourses(CourseModal programname)
         {
             try
@@ -268,6 +296,26 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("courseId", obj.courseID);
                 com.Parameters.AddWithValue("ProgramId", obj.ProgramId);
+                com.Parameters.AddWithValue("name", obj.cloName);
+                com.Parameters.AddWithValue("desc", obj.cloDesc);
+                com.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<bool> TeacherAssignCLOs(CLOsModal obj)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "TeacherAssignCLOs";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("Coursename", obj.Coursename);
                 com.Parameters.AddWithValue("name", obj.cloName);
                 com.Parameters.AddWithValue("desc", obj.cloDesc);
                 com.ExecuteNonQuery();

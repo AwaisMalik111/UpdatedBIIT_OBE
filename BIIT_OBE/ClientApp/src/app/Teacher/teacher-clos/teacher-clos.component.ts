@@ -59,7 +59,7 @@ export class TeacherClosComponent implements OnInit {
     this.spinner=true;
     this.ProgramName = Programs.programname;
     this.CourseName = Courses.coursename;
-    this.serv.GetAllCLOs('api/Course', '/GetAllCLOs', { 'CourseName': Courses.coursename }).subscribe(response => {
+    this.serv.GetAllCLOs('api/Course', '/TeacherGetAllCLOs', { 'CourseName': Courses.coursename }).subscribe(response => {
       if (response.length != 0) {
         this.allCLOs = response;
         setTimeout(()=>{ 
@@ -122,7 +122,8 @@ export class TeacherClosComponent implements OnInit {
       }
     });
   }
-  AddNewClos() {this.spinner=true;
+  AddNewClos() {
+    this.spinner=true;
     if (this.Cloname === "" || this.Clodesc === "") {
       alert("Please fill are the required Information....!")
       setTimeout(()=>{ 
@@ -130,9 +131,9 @@ export class TeacherClosComponent implements OnInit {
   }, 400);
       return;
     }
-    this.serv.AssignCLOs('api/Course', '/AssignCLOs', {
+    this.serv.AssignCLOs('api/Course', '/TeacherAssignCLOs', {
       'CourseName': Courses.coursename,
-      'cloName': this.Cloname, 'cloDesc': this.Clodesc, 'createdBy': GlobalService.uname
+      'cloName': this.Cloname, 'cloDesc': this.Clodesc
     }).subscribe(response => {
       if (response.length != 0) {
         this.Cloname = "";
@@ -168,35 +169,11 @@ export class TeacherClosComponent implements OnInit {
       });
     }
     if (x === 'PLO weightage') {
-      this.serv.GetAlreadySetWeightageOfPLO('api/Weightage', '/GetAlreadySetWeightageOfPLO').subscribe(response => {
-        if (response.length != 0) {
-
-          this.GetAlreadySetWeightageOfPLOValue = response;
-
-        }
-        else {
-          this.GetAlreadySetWeightageOfPLOValue = response;
-
-        }
-      });
-      this.serv.GetRemainingPLOWeightage('api/Weightage', '/GetAlreadySetPLOWeightage', {
+      this.serv.GetRemainingPLOWeightage('api/Weightage', '/TeacherGetAlreadySetWeightageOfPLO', {
         'coursename': Courses.coursename,
       }).subscribe(response => {
         if (response.length != 0) {
-          for (let i = 0; i < response.length; i++) {
-            for (let j = 0; j < response.length; j++) {
-              if (response[i].id != this.ALLplos[j].id) {
-
-              }
-              else {
-                this.ALLplos.splice(j, 1);
-              }
-            }
-          }
-          this.AssignPlos_check=true;
           this.plodetails = response;
-          this.AssignPlos_count = response.length;
-
         }
       });
     }
@@ -306,17 +283,16 @@ export class TeacherClosComponent implements OnInit {
         return;
       }
       else {
-        this.serv.Assign_Marks('api/Weightage', '/AssingMarks', {
+        this.serv.Assign_Marks('api/Weightage', '/TeacherAssingMarks', {
           'quiz': this.mark_quiz,
           'assignment': this.mark_assignment,
           'lab': this.mark_lab,
           'mid': this.mark_mid,
           'final': this.mark_final,
           'project': this.mark_project,
-          'CLO_Id': this.uCloid,
-          'Course_Id':Courses.courseId ,
-          'Program_Id': Programs.ProgramId,
-          'createdBy': GlobalService.uname
+          'CLO_Name': this.uCloname,
+          'CLO_Desc': this.uClodesc,
+          'coursename':Courses.coursename
         }).subscribe(response => {
           if (response.length != 0) {
             alert("Assessment had done.");
@@ -329,7 +305,7 @@ export class TeacherClosComponent implements OnInit {
             setTimeout(()=>{ 
               this.spinner=false;
         }, 400);
-            this.rout.navigate(["/course"]);
+            this.rout.navigate(["/AssignedCoursesComponent"]);
           }
         });
       }

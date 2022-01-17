@@ -20,5 +20,6 @@ namespace BIIT_OBE_Core.Entities
         public int Program_Id { get; set; }
         public string CLO_Name{ get; set; }
         public string CLO_Desc{ get; set; }
+        public string coursename{ get; set; }
     }
 }

@@ -55,6 +55,12 @@ namespace BIIT_OBE.Controllers
             List<PLO_List> response = await _weightage.GetAlreadySetPLOWeightage(obj);
             return response;
         }
+        [HttpPost("TeacherGetAlreadySetWeightageOfPLO")]
+        public async Task<List<CLO_PLO_Mapping>> TeacherGetAlreadySetWeightageOfPLO([FromBody] CLO_PLO_Mapping obj)
+        {
+            List<CLO_PLO_Mapping> response = await _weightage.TeacherGetAlreadySetWeightageOfPLO(obj);
+            return response;
+        }
         [HttpPost("GetCLOSAssessment")]
         public async Task<List<AssignWeightage>> GetCLOSAssessment([FromBody] CLO_PLO_Mapping obj)
         {
@@ -89,6 +95,12 @@ namespace BIIT_OBE.Controllers
         public async Task<bool> AddNewExam([FromBody] AddExam obj)
         {
             bool response = await _weightage.AddNewExam(obj);
+            return response;
+        }
+        [HttpPost("TeacherAssingMarks")]
+        public async Task<bool> TeacherAssingMarks([FromBody] AssignWeightage obj)
+        {
+            bool response = await _weightage.TeacherAssingMarks(obj);
             return response;
         }
         [HttpGet("getAllExams")]

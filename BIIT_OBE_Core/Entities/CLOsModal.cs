@@ -10,6 +10,7 @@ namespace BIIT_OBE_Core.Entities
     {
         public int id { get; set; }
         public string cloName { get; set; }
+        public string Coursename { get; set; }
         public string cloDesc { get; set; }
         public int PLOId { get; set; }
         public int ProgramId { get; set; }

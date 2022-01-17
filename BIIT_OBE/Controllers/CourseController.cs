@@ -36,6 +36,12 @@ namespace BIIT_OBE.Controllers
             bool flag = await _course.UpdateCLO(obj);
             return flag;
         }
+        [HttpPost("TeacherAssignCLOs")]
+        public async Task<bool> TeacherAssignCLOs(CLOsModal obj)
+        {
+            bool flag = await _course.TeacherAssignCLOs(obj);
+            return flag;
+        }
         [HttpPost("AssignCLOs")]
         public async Task<bool> AssignCLOs([FromBody] CLOsModal obj)
         {
@@ -53,6 +59,12 @@ namespace BIIT_OBE.Controllers
         public async Task<List<CLOsModal>> GetAllCLOs(CLOsModal obj)
         {
             List<CLOsModal> list = await _course.GetAllCLOs(obj);
+            return list;
+        }
+        [HttpPost("TeacherGetAllCLOs")]
+        public async Task<List<CLOsModal>> TeacherGetAllCLOs(CLOsModal obj)
+        {
+            List<CLOsModal> list = await _course.TeacherGetAllCLOs(obj);
             return list;
         }
         [HttpPost("GetSection")]
