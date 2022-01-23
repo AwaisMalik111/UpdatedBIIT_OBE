@@ -19,6 +19,7 @@ namespace BIIT_OBE_Infrastructure.Interfaces.Courses
         public Task<bool> AssignCLOs(CLOsModal obj);
         public Task<bool> DeleteCourse(CourseModal obj);
         public Task<bool> DeleteCLO(CourseModal obj);
+        public Task<bool> TeacherDeleteCLO(CourseModal obj);
         public Task<bool> AssignCourseToTeacher(List<ExcelAllocation> ExcelList);
         public Task<List<CLOsModal>> GetAllCLOs(CLOsModal obj);
         public Task<List<CLOsModal>> TeacherGetAllCLOs(CLOsModal obj);

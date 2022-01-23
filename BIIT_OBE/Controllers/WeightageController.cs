@@ -25,6 +25,12 @@ namespace BIIT_OBE.Controllers
             bool flag = await _weightage.AssingMarks(obj);
             return flag;
         }
+        [HttpPost("ApproveAssessment")]
+        public async Task<bool> ApproveAssessment([FromBody] CLO_PLO_Mapping obj)
+        {
+            bool flag = await _weightage.ApproveAssessment(obj);
+            return flag;
+        }
         [HttpPost("AssingMarksUpdate")]
         public async Task<bool> AssingMarksUpdate([FromBody] AssignWeightage obj)
         {
@@ -91,6 +97,18 @@ namespace BIIT_OBE.Controllers
             List<AssignWeightage> response = await _weightage.GetAlreadySetWeightageOfPLO();
             return response;
         }
+        [HttpGet("GetAllPloNotify")]
+        public async Task<List<AssignWeightage>> GetAllPloNotify()
+        {
+            List<AssignWeightage> response = await _weightage.GetAllPloNotify();
+            return response;
+        }
+        [HttpGet("GetAllAssessmentNotify")]
+        public async Task<List<AssignWeightage>> GetAllAssessmentNotify()
+        {
+            List<AssignWeightage> response = await _weightage.GetAllAssessmentNotify();
+            return response;
+        }
         [HttpPost("AddNewExam")]
         public async Task<bool> AddNewExam([FromBody] AddExam obj)
         {
@@ -103,10 +121,28 @@ namespace BIIT_OBE.Controllers
             bool response = await _weightage.TeacherAssingMarks(obj);
             return response;
         }
+        [HttpPost("Approvemapping")]
+        public async Task<bool> Approvemapping([FromBody] AssignWeightage obj)
+        {
+            bool response = await _weightage.Approvemapping(obj);
+            return response;
+        }
         [HttpGet("getAllExams")]
         public async Task<List<AddExam>> getAllExams()
         {
              List<AddExam> response = await _weightage.getAllExams();
+            return response;
+        }
+        [HttpGet("GetAllPloNotifing")]
+        public async Task<List<AddExam>> GetAllPloNotifing()
+        {
+             List<AddExam> response = await _weightage.GetAllPloNotifing();
+            return response;
+        }
+        [HttpGet("TeachPLOMapNotify")]
+        public async Task<List<AddExam>> TeachPLOMapNotify()
+        {
+             List<AddExam> response = await _weightage.TeachPLOMapNotify();
             return response;
         }
     }

@@ -12,6 +12,7 @@ import { CLOManagementComponent } from './HOD/clo-management/clo-management.comp
 import { PloMappingComponent } from './HOD/Result/plo-mapping.component';
 import { ProgramComponent } from './HOD/program/program.component';
 import { CoursesComponent } from './HOD/course/courses.component';
+import { HodNotifyComponent } from './HOD/hod-notify/hod-notify.component';
 import { FooterComponent } from './Admin/footer/footer.component';
 import { UserDetailsComponent } from './Admin/user-details/user-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,10 +27,15 @@ import { ExamsComponent } from './Teacher/exams/exams.component';
 import { ResultComponent } from './Student/result/result.component';
 import { AssignedCoursesComponent } from './Teacher/assigned-courses/assigned-courses.component';
 import { TeacherClosComponent } from './Teacher/teacher-clos/teacher-clos.component';
+import { TeacherNotifyComponent } from './Teacher/teacher-notify/teacher-notify.component';
+import { ApprovedComponent } from './HOD/approved/approved.component';
 
 @NgModule({
   declarations: [
     TeacherClosComponent,
+    HodNotifyComponent,
+    ApprovedComponent,
+    TeacherNotifyComponent,
     ResultComponent,
     PloMappingComponent,
     CLOManagementComponent,
@@ -68,11 +74,14 @@ import { TeacherClosComponent } from './Teacher/teacher-clos/teacher-clos.compon
       { path: 'plos', component: PlosComponent, },
       { path: 'HodViewResult', component: PloMappingComponent, },
       { path: 'CLOAssessment', component: CLOManagementComponent, },
+      { path: 'Notify', component: HodNotifyComponent, },
+      { path: 'Approved', component: ApprovedComponent, },
       //for teachers
       { path: 'AssignedCoursesComponent', component: AssignedCoursesComponent, },
       { path: 'TeacherViewResult', component: ClosComponent, },
       { path: 'ExamsComponent', component: ExamsComponent, },
       { path: 'Closmanagement', component: TeacherClosComponent, },
+      { path: 'TeacherNotify', component: TeacherNotifyComponent, },
       {path:'StudentViewResult',component:ResultComponent}
     ]),
     BrowserAnimationsModule,

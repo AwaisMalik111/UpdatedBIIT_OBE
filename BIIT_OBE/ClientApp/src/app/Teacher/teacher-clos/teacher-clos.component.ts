@@ -97,7 +97,8 @@ export class TeacherClosComponent implements OnInit {
   }
   DeleteCLO() {
     if (confirm("Are you sure to delete? ")) {
-      this.serv.DeleteUser("api/Course/", "DeleteCLO", { 'id': this.uCloid }).subscribe(response => {
+
+      this.serv.DeleteUser("api/Course/", "TeacherDeleteCLO", { 'cloname':this.uCloname,'name': Courses.coursename }).subscribe(response => {
         if (response.length != 0) {
           alert("CLO has Deleted Successfully.");
           setTimeout(()=>{ 
@@ -250,16 +251,14 @@ export class TeacherClosComponent implements OnInit {
   }
   SelectedPLOsArray(x, index, checkedProp) {
     if (checkedProp) {
-      $("#" + x).removeAttr('disabled');
       this.SelectedPLO.push({ id: x, checked: true })
     } else {
       this.SelectedPLO.splice(x, 1);
-      $("#" + x).prop('disabled', true);
     }
   }
   MapPloWithClo() {
       this.serv.MapPloWithClo('api/Weightage', '/TeacherMapPloWithClo', {
-        'CLO_Id': this.uCloid,
+        'cloname': this.uCloname,
         'coursename': Courses.coursename,
         'PLO_Id': this.SelectedPLO
       }).subscribe(response => {

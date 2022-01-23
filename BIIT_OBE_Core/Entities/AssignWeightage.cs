@@ -10,6 +10,7 @@ namespace BIIT_OBE_Core.Entities
     {
         public int Assessment_Id { get; set; }
         public int quiz { get; set; }
+        public int id { get; set; }
         public int assignment { get; set; }
         public int lab { get; set; }
         public int mid { get; set; }
@@ -19,7 +20,10 @@ namespace BIIT_OBE_Core.Entities
         public int Course_Id { get; set; }
         public int Program_Id { get; set; }
         public string CLO_Name{ get; set; }
+        public string weightage{ get; set; }
+        public string PLO_Name{ get; set; }
         public string CLO_Desc{ get; set; }
+        public string status{ get; set; }
         public string coursename{ get; set; }
     }
 }

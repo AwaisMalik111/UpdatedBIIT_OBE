@@ -17,6 +17,7 @@ namespace BIIT_OBE_Core.Entities
         public string CLO { get; set; }
         public string cloname { get; set; }
         public string clodesc { get; set; }
+        public string status { get; set; }
         public int id { get; set; }
         public int examid { get; set; }
         public List<CloList> assessment_Id { get; set; }

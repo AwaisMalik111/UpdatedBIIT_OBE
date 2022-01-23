@@ -75,4 +75,5 @@ export class HclosComponent implements OnInit {
       }
     });
   }
+  
 }

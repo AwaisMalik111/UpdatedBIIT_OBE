@@ -96,6 +96,12 @@ namespace BIIT_OBE.Controllers
             bool list = await _course.DeleteCLO(obj);
             return list;
         }
+        [HttpPost("TeacherDeleteCLO")]
+        public async Task<bool> TeacherDeleteCLO([FromBody] CourseModal obj)
+        {
+            bool list = await _course.TeacherDeleteCLO(obj);
+            return list;
+        }
 
         [HttpPost("ExcelAllocation")]
         public async Task<bool> AssignCourseToTeacher([FromBody] List<ExcelAllocation> ExcelList)

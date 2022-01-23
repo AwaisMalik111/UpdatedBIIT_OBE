@@ -9,6 +9,7 @@ namespace BIIT_OBE_Core.Entities
    public class CourseModal
     {
         public int id { get; set; }
+        public string cloname { get; set; }
         public string name { get; set; }
         public string code { get; set; }
         public string coursetype { get; set; }

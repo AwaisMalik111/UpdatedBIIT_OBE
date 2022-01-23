@@ -53,11 +53,13 @@ export class AssignedCoursesComponent implements OnInit {
     this.GetAssignedCLOs();
   }
   GetAssignedCLOs() {
+    $("#AddAssessment").hide();
     this.serv.GetCLOS('api/Weightage', '/GetCoursesCLOS', {
       'cloname': this.title
     }).subscribe(response => {
       if (response.length != 0) {
         this.AssignCLOSDetail = response;
+        $("#AddAssessment").show();
       }
       else {
         this.AssignCLOSDetail = response;

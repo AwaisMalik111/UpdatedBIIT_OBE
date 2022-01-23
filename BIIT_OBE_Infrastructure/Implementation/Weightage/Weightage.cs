@@ -38,7 +38,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 com.Parameters.AddWithValue("Course_Id", obj.Course_Id);
                 com.Parameters.AddWithValue("CLO_Id", obj.CLO_Id);
                 com.Parameters.AddWithValue("total", total);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
@@ -67,7 +67,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 com.Parameters.AddWithValue("cloname", obj.CLO_Name);
                 com.Parameters.AddWithValue("clodesc", obj.CLO_Desc);
                 com.Parameters.AddWithValue("total", total);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
@@ -96,7 +96,29 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 com.Parameters.AddWithValue("Course_Id", obj.Course_Id);
                 com.Parameters.AddWithValue("CLO_Id", obj.CLO_Id);
                 com.Parameters.AddWithValue("total", total);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
+                con.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<bool> Approvemapping(AssignWeightage obj)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "Approvemapping";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("plo", obj.id);
+                com.Parameters.AddWithValue("clo", obj.CLO_Name);
+                com.Parameters.AddWithValue("course", obj.coursename);
+                com.Parameters.AddWithValue("weightage", obj.weightage);
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
@@ -121,8 +143,8 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                     com1.Parameters.AddWithValue("CLO_Id", obj.CLO_Id);
                     com1.Parameters.AddWithValue("PLO_Id", obj.PLO_Id[i].id);
                     com1.Parameters.AddWithValue("PLO_weightage", obj.PLO_weightage[i].weightage);
-                    com1.ExecuteNonQuery();
-                    PLOTotalCalculation(obj.PLO_Id[i].id, obj.PLO_weightage[i].weightage);
+                    await com1.ExecuteNonQueryAsync();
+                    await PLOTotalCalculation(obj.PLO_Id[i].id, obj.PLO_weightage[i].weightage);
                 }
                 return true;
             }
@@ -142,7 +164,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 com1.CommandType = CommandType.StoredProcedure;
                 com1.Parameters.AddWithValue("PLO_Id", ploId);
                 com1.Parameters.AddWithValue("PLO_weightage", Weightage);
-                com1.ExecuteNonQuery();
+                await com1.ExecuteNonQueryAsync();
                 return true;
             }
             catch (Exception ex)
@@ -329,16 +351,91 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 while (sdr.Read())
                 {
                     get = new AssignWeightage();
-                    get.Assessment_Id = int.Parse(sdr["Assessment_Id"].ToString());
-                    get.CLO_Id = int.Parse(sdr["CLO_Id"].ToString());
                     get.quiz = int.Parse(sdr["Quiz"].ToString());
                     get.assignment = int.Parse(sdr["Assignment"].ToString());
                     get.lab = int.Parse(sdr["Lab"].ToString());
                     get.project = int.Parse(sdr["Project"].ToString());
                     get.mid = int.Parse(sdr["Mid"].ToString());
                     get.final = int.Parse(sdr["Final"].ToString());
-                    get.CLO_Name = sdr["CLO_Name"].ToString();
-                    get.CLO_Desc = sdr["CLO_desc"].ToString();
+                    get.CLO_Name = sdr["cloname"].ToString();
+                    get.CLO_Desc = sdr["clodesc"].ToString();
+                    list.Add(get);
+                }
+                con.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<List<AssignWeightage>> GetAllPloNotify()
+        {
+            try
+            {
+                List<AssignWeightage> list = new List<AssignWeightage>();
+                AssignWeightage get;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "GetAllPloNotify";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                SqlDataReader sdr = com.ExecuteReader();
+                while (sdr.Read())
+                {
+                    get = new AssignWeightage();
+                    get.quiz = int.Parse(sdr["Quiz"].ToString());
+                    get.assignment = int.Parse(sdr["Assignment"].ToString());
+                    get.lab = int.Parse(sdr["Lab"].ToString());
+                    get.project = int.Parse(sdr["Project"].ToString());
+                    get.mid = int.Parse(sdr["Mid"].ToString());
+                    get.final = int.Parse(sdr["Final"].ToString());
+                    get.CLO_Name = sdr["cloname"].ToString();
+                    get.CLO_Desc = sdr["clodesc"].ToString();
+                    get.coursename = sdr["coursename"].ToString();
+                    list.Add(get);
+                }
+                con.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<List<AssignWeightage>> GetAllAssessmentNotify()
+        {
+            try
+            {
+                List<AssignWeightage> list = new List<AssignWeightage>();
+                AssignWeightage get;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "GetAllAssessmentNotify";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                SqlDataReader sdr = com.ExecuteReader();
+                while (sdr.Read())
+                {
+                    get = new AssignWeightage();
+                    get.quiz = int.Parse(sdr["Quiz"].ToString());
+                    get.assignment = int.Parse(sdr["Assignment"].ToString());
+                    get.lab = int.Parse(sdr["Lab"].ToString());
+                    get.project = int.Parse(sdr["Project"].ToString());
+                    get.mid = int.Parse(sdr["Mid"].ToString());
+                    get.final = int.Parse(sdr["Final"].ToString());
+                    get.CLO_Name = sdr["cloname"].ToString();
+                    get.CLO_Desc = sdr["clodesc"].ToString();
+                    get.coursename = sdr["coursename"].ToString();
+                    get.status = sdr["isApprov"].ToString();
+                    if (get.status == "False")
+                    {
+                        get.status = "Approved";
+                    }
+                    else
+                    {
+                        get.status = "Pending";
+                    }
                     list.Add(get);
                 }
                 con.Close();
@@ -376,7 +473,8 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 throw;
             }
         }
-        public async Task<List<CLO_PLO_Mapping>> TeacherGetAlreadySetWeightageOfPLO(CLO_PLO_Mapping obj) { 
+        public async Task<List<CLO_PLO_Mapping>> TeacherGetAlreadySetWeightageOfPLO(CLO_PLO_Mapping obj)
+        {
             try
             {
                 List<CLO_PLO_Mapping> list = new List<CLO_PLO_Mapping>();
@@ -423,7 +521,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                     com1.Parameters.AddWithValue("assessmenttype", obj.assessmentType);
                     com1.Parameters.AddWithValue("assessment_Id", obj.assessment_Id[i].id);
                     com1.Parameters.AddWithValue("CLO_weightage", obj.CLOWeightage[i].value);
-                    com1.ExecuteNonQuery();
+                    await com1.ExecuteNonQueryAsync();
                 }
                 return true;
             }
@@ -431,8 +529,9 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
             {
                 throw;
             }
-        }
-        public async Task<List<AddExam>> getAllExams() {
+        }  
+        public async Task<List<AddExam>> getAllExams()
+        {
             try
             {
                 List<AddExam> list = new List<AddExam>();
@@ -466,6 +565,76 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
             {
                 throw;
             }
+        }  
+        public async Task<List<AddExam>> GetAllPloNotifing()
+        {
+            try
+            {
+                List<AddExam> list = new List<AddExam>();
+                AddExam get;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "GetAllPloNotifing";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                SqlDataReader sdr = com.ExecuteReader();
+                while (sdr.Read())
+                {
+                    get = new AddExam();
+                    get.Course_name = sdr["Course"].ToString();
+                    get.cloname = sdr["cloname"].ToString();
+                    get.Teacher = sdr["PLO_Name"].ToString();
+                    get.assessmentType = sdr["PLO_desc"].ToString();
+                    get.id = int.Parse(sdr["PLO_Id"].ToString());
+                    list.Add(get);
+                }
+                con.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<List<AddExam>> TeachPLOMapNotify()
+        {
+            try
+            {
+                List<AddExam> list = new List<AddExam>();
+                AddExam get;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "TeachPLOMapNotify";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                SqlDataReader sdr = com.ExecuteReader();
+                while (sdr.Read())
+                {
+                    get = new AddExam();
+                    get.Course_name = sdr["Course"].ToString();
+                    get.cloname = sdr["cloname"].ToString();
+                    get.Teacher = sdr["PLO_Name"].ToString();
+                    get.assessmentType = sdr["PLO_desc"].ToString();
+                    get.status = sdr["isApprov"].ToString();
+                    if (get.status=="False")
+                    {
+                        get.status = "Approved";
+                    }
+                    else
+                    {
+                        get.status = "Pending";
+                    }
+                    get.examid = int.Parse(sdr["Weightage"].ToString());
+                    get.id = int.Parse(sdr["PLO_Id"].ToString());
+                    list.Add(get);
+                }
+                con.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         public async Task<bool> TeacherMapPloWithClo(CLO_PLO_Mapping obj)
         {
@@ -475,14 +644,33 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Open();
                 for (int i = 0; i < obj.PLO_Id.Count; i++)
                 {
-                    string query = "CLO_PLO_Mapping";
+                    string query = "sp_TeacherCLO_PLO_Mapping";
                     SqlCommand com1 = new SqlCommand(query, con);
                     com1.CommandType = CommandType.StoredProcedure;
                     com1.Parameters.AddWithValue("coursename", obj.coursename);
-                    com1.Parameters.AddWithValue("CLO_Id", obj.CLO_Id);
+                    com1.Parameters.AddWithValue("cloname", obj.cloname);
                     com1.Parameters.AddWithValue("PLO_Id", obj.PLO_Id[i].id);
-                    com1.ExecuteNonQuery();
+                    await com1.ExecuteNonQueryAsync();
                 }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<bool> ApproveAssessment(CLO_PLO_Mapping obj)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "HODAssessmentApproval";
+                SqlCommand com1 = new SqlCommand(query, con);
+                com1.CommandType = CommandType.StoredProcedure;
+                com1.Parameters.AddWithValue("coursename", obj.coursename);
+                com1.Parameters.AddWithValue("cloname", obj.cloname);
+                await com1.ExecuteNonQueryAsync();
                 return true;
             }
             catch (Exception ex)

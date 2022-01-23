@@ -132,6 +132,26 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 throw;
             }
         }
+        public async Task<bool> TeacherDeleteCLO(CourseModal obj)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "TeacherDeleteCLO";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("coursename", obj.name);
+                com.Parameters.AddWithValue("cloname", obj.cloname);
+                com.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task<List<CLOsModal>> GetAllCLOs(CLOsModal clo)
         {
             try

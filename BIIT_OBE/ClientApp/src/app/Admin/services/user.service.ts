@@ -15,6 +15,9 @@ export class UserService {
   ViewCourse<T>(ControllerName: any, MethodName: any, data: any) {
     return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
   }
+  Approvemapping<T>(ControllerName: any, MethodName: any, data: any) {
+    return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
+  }
   GetExamType<T>(ControllerName: any, MethodName: any, data: any) {
     return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
   }
@@ -111,6 +114,9 @@ export class UserService {
   AddNewExam<T>(ControllerName: any, MethodName: any, data: any) {
     return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
   }
+  ApproveAssessment<T>(ControllerName: any, MethodName: any, data: any) {
+    return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
+  }
   
   /////////////////////////////////GET Requestes///////////////////////////////////////////////////////////////////
 
@@ -136,6 +142,18 @@ export class UserService {
     return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
   }
   ViewPLO<T>(ControllerName: any, MethodName: any) {
+    return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
+  }
+  GetAllPloNotify<T>(ControllerName: any, MethodName: any) {
+    return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
+  }
+  GetAllPloNotifing<T>(ControllerName: any, MethodName: any) {
+    return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
+  }
+  TeachPLOMapNotify<T>(ControllerName: any, MethodName: any) {
+    return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
+  }
+  GetAllAssessmentNotify<T>(ControllerName: any, MethodName: any) {
     return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
   }
 }

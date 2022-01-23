@@ -14,10 +14,10 @@ export class TsidebarComponent implements OnInit {
   }
   ngOnInit() {
     if (this.route.url.endsWith('AssignedCoursesComponent')) this.AssignedCoursesComponent();
+    if (this.route.url.endsWith('TeacherNotify')) this.TeacherNotify();
     if (this.route.url.endsWith('TeacherViewResult')) this.ClosComponent();
     if (this.route.url.endsWith('ExamsComponent')) this.ExamsComponent();
   }
-
   AssignedCoursesComponent() {
     this.active = "AssignedCoursesComponent";
     $("#" + this.active).addClass('active');
@@ -33,6 +33,9 @@ export class TsidebarComponent implements OnInit {
     $("#" + this.active).addClass('active');
     this.route.navigate(["/ExamsComponent"]);
   }
-
-
+  TeacherNotify() {
+    this.active = "TeacherNotify";
+    $("#" + this.active).addClass('active');
+    this.route.navigate(["/TeacherNotify"]);
+  }
 }

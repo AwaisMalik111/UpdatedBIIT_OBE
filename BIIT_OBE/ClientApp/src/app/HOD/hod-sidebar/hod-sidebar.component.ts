@@ -14,12 +14,14 @@ export class HODSidebarComponent implements OnInit {
   }
   ngOnInit() {
     if (this.route.url.endsWith('HodViewResult')) this.Result();
+    if (this.route.url.endsWith('Approved')) this.Approved();
     if (this.route.url.endsWith('clos')) this.clos();
     if (this.route.url.endsWith('plos')) this.plos();
     if (this.route.url.endsWith('allocation')) this.allocation();
     if (this.route.url.endsWith('course')) this.cour();
     if (this.route.url.endsWith('program')) this.prog();
     if (this.route.url.endsWith('Cloweightage')) this.SetCLOWeightage();
+    if (this.route.url.endsWith('Notify')) this.Notify();
   }
 
   allocation() {
@@ -57,5 +59,15 @@ export class HODSidebarComponent implements OnInit {
     this.active = "Result";
     $("#" + this.active).addClass('active');
     this.route.navigate(["/HodViewResult"]);  
+  }
+  Notify(){
+    this.active = "Notify";
+    $("#" + this.active).addClass('active');
+    this.route.navigate(["/Notify"]);  
+  }
+  Approved(){
+    this.active = "Approved";
+    $("#" + this.active).addClass('active');
+    this.route.navigate(["/Approved"]);  
   }
 }
