@@ -13,6 +13,12 @@ export class HodNotifyComponent implements OnInit {
   details: any;
   assessmentDetails: any;
   weightage: any;
+  quiz: any;
+  lab: any;
+  project: any;
+  mid: any;
+  final: any;
+  assignment: any;
   maintable: boolean;
   spinner: boolean;
   assessment: boolean;
@@ -32,7 +38,7 @@ export class HodNotifyComponent implements OnInit {
     }, 1000);
   }
   GetAllPloNotify() {
-    this.maintable=true;
+    this.maintable = true;
     this.assessment = true;
     this.spinner = true;
     this.serv.GetAllPloNotify('api/Weightage', '/GetAllPloNotify').subscribe(response => {
@@ -49,10 +55,30 @@ export class HodNotifyComponent implements OnInit {
       }
     });
   }
+  GetAllAssessmentNotify(){
+    setTimeout(() => {
+      this.spinner = false;
+    }, 400);
+    this.assessment = true;
+  }
   ApproveAssessment(coursename, clO_Name) {
     this.spinner = true;
+    var total = this.assignment + this.final + this.lab + this.mid + this.quiz + this.project;
+    alert(total);
+    if (total > 100 || total <= 0) {
+      alert("Total weightage Range(0-100).Please assign again....!");
+      setTimeout(() => {
+        this.spinner = false;
+      }, 400);
+      return;
+    }
     this.serv.ApproveAssessment('api/Weightage', '/ApproveAssessment',
-      { 'coursename': coursename, 'cloname': clO_Name }).subscribe(response => {
+      {
+        'coursename': coursename, 'cloname': clO_Name,
+        'quiz': this.quiz, 'assignment': this.assignment,
+        'lab': this.lab, 'mid': this.mid,
+        'final': this.final, 'project': this.project
+      }).subscribe(response => {
         if (response) {
           this.details = response;
           setTimeout(() => {
@@ -99,6 +125,12 @@ export class HodNotifyComponent implements OnInit {
     for (let i = 0; i < this.details.length; i++) {
       if (x === this.details[i].coursename) {
         this.assessmentDetails = this.details[i];
+        this.quiz = this.details[i].quiz;
+        this.assignment = this.details[i].assignment;
+        this.lab = this.details[i].lab;
+        this.project = this.details[i].project;
+        this.mid = this.details[i].mid;
+        this.final = this.details[i].final;
         break;
       }
     }

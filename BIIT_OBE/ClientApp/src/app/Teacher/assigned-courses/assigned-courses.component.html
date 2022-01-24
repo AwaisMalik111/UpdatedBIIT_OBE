@@ -42,10 +42,17 @@
                             <tr *ngFor="let item of details">
                                 <td>{{item.course_Title}}</td>
                                 <td>{{item.course_Code}}</td>
-                                <td>{{item.section}}</td>
-                                <td><input (click)="Closmanagement(item.course_Title)" class="btn btn-primary"
+                                <td>{{item.program}}{{item.section}}</td>
+                                <td >
+                                    <ng-container *ngIf="item.section==='A'">
+                                        <input (click)="Closmanagement(item.course_Title)" class="btn btn-primary"
                                         type="button"
-                                        value="CLOS"></td>
+                                        value="CLOS">
+                                    </ng-container>
+                                    <ng-container *ngIf="item.section!=='A'">
+                                        -
+                                    </ng-container>
+                                    </td>
                                 <td><input (click)="GetCourseDetails(item)" class="btn btn-primary rounded-pill"
                                         data-bs-target="#AddAssessment" data-bs-toggle="offcanvas" type="button"
                                         value="+"></td>
@@ -126,7 +133,7 @@
                                 <input autocomplete="off" (change)="SelectedCLOsArray(item.assessment_Id,item.clO_Id,idx,$event.target.checked)"
                                     class="form-check-input shadow" type="checkbox" value="">
                                 <details>
-                                    <summary>CLO{{item.clO_Id}}</summary>
+                                    <summary>CLO{{item.clO_Id+1}}</summary>
                                     <small>CLO Name : {{item.clO_Name}}</small><br>
                                     <small>CLO Description : {{item.clO_Desc}}</small><br>
                                     <hr>

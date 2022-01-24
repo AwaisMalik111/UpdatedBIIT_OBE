@@ -33,6 +33,7 @@
                             <tr>
                                 <th>Course Title</th>
                                 <th>Course Code</th>
+                                <th>Program</th>
                                 <th>Section</th>
                                 <th>Assigned To</th>
                             </tr>
@@ -41,6 +42,7 @@
                             <tr *ngFor="let item of allocation">
                                 <td>{{item.Course_Title}}.</td>
                                 <td>{{item.Course_Code}}.</td>
+                                <td>{{item.Program}}.</td>
                                 <td>{{item.Section}}.</td>
                                 <td>{{item.Teacher}}.</td>
                             </tr>

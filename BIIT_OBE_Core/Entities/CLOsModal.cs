@@ -36,6 +36,12 @@ namespace BIIT_OBE_Core.Entities
         public string plodes { get; set; }
         public string ploweightage { get; set; }
         public string coursename { get; set; }
+        public int assignment{ get; set; }
+        public int mid { get; set; }
+        public int final { get; set; }
+        public int project{ get; set; }
+        public int lab{ get; set; }
+        public int quiz{ get; set; }
         public int CLO_Id { get; set; }
         public int Course_Id { get; set; }
         public int Program_Id { get; set; }

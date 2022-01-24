@@ -13,18 +13,11 @@
             <div class="col-3"></div>
             <div class="col-7">
                 <div class="row">
-                    <div class="col-6">
-                        <label for="selection" style="font-weight: 900;">Please select the program :</label>
-                        <select class="form-select shadow" id="selection" name="programselection"
-                            [(ngModel)]="programselection" (change)="SelectedProgram_GetCourse()">
-                            <option *ngFor="let item of programs" value={{item.id}}>{{item.pname}}</option>
-                        </select>
-                    </div>
-                    <div class="col-6" style="font-weight: 900;">
+                    <div class="col-12" style="font-weight: 900;">
                         <label for="selection">Please select the Course :</label>
                         <select class="form-select shadow" id="selection" name="programselection"
                             [(ngModel)]="Courseselection" (change)="SelectedCourse_GetCLOS()">
-                            <option *ngFor="let item of allcourses" value={{item.id}}>{{item.name}}</option>
+                            <option *ngFor="let item of allcourses" value={{item.name}}>{{item.name}}</option>
                         </select>
                     </div>
                 </div>

@@ -190,7 +190,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                     obj.Course_Id = int.Parse(sdr["PLO_Id"].ToString());
                     obj.ploname = sdr["PLO_Name"].ToString();
                     obj.plodes = sdr["PLO_desc"].ToString();
-                    obj.ploweightage = sdr["PLO_Weightage"].ToString();
+                    obj.ploweightage = sdr["Weightage"].ToString();
                     list.Add(obj);
                 }
                 con.Close();
@@ -242,21 +242,19 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 string query = "GetCLOSAssessment";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("ProgramId", obj.Program_Id);
-                com.Parameters.AddWithValue("CourseId", obj.Course_Id);
+                com.Parameters.AddWithValue("cloname", obj.cloname);
                 SqlDataReader sdr = com.ExecuteReader();
                 while (sdr.Read())
                 {
                     get = new AssignWeightage();
                     get.quiz = int.Parse(sdr["Quiz"].ToString());
-                    get.CLO_Id = int.Parse(sdr["CLO_Id"].ToString());
                     get.assignment = int.Parse(sdr["Assignment"].ToString());
                     get.lab = int.Parse(sdr["Lab"].ToString());
                     get.project = int.Parse(sdr["Project"].ToString());
                     get.mid = int.Parse(sdr["Mid"].ToString());
                     get.final = int.Parse(sdr["Final"].ToString());
-                    get.CLO_Name = sdr["CLO_Name"].ToString();
-                    get.CLO_Desc = sdr["CLO_Desc"].ToString();
+                    get.CLO_Name = sdr["cloname"].ToString();
+                    get.CLO_Desc = sdr["clodesc"].ToString();
                     list.Add(get);
                 }
                 con.Close();
@@ -315,15 +313,12 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("PLO_ID", obj.CLO_Id);
-                com.Parameters.AddWithValue("Program_Id", obj.Program_Id);
                 SqlDataReader sdr = com.ExecuteReader();
                 while (sdr.Read())
                 {
                     get = new CLO_PLO_Mapping();
-                    get.CLO_Id = int.Parse(sdr["CLO_Id"].ToString());
-                    get.cloname = sdr["CLO_Name"].ToString();
-                    get.coursename = sdr["Course_Name"].ToString();
-                    get.clodes = sdr["CLO_Desc"].ToString();
+                    get.cloname = sdr["cloname"].ToString();
+                    get.coursename = sdr["Course"].ToString();
                     get.weightage = int.Parse(sdr["Weightage"].ToString());
                     list.Add(get);
                 }
@@ -669,6 +664,12 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 SqlCommand com1 = new SqlCommand(query, con);
                 com1.CommandType = CommandType.StoredProcedure;
                 com1.Parameters.AddWithValue("coursename", obj.coursename);
+                com1.Parameters.AddWithValue("quiz", obj.quiz);
+                com1.Parameters.AddWithValue("lab", obj.lab);
+                com1.Parameters.AddWithValue("mid", obj.mid);
+                com1.Parameters.AddWithValue("project", obj.project);
+                com1.Parameters.AddWithValue("final", obj.final);
+                com1.Parameters.AddWithValue("assignment", obj.assignment);
                 com1.Parameters.AddWithValue("cloname", obj.cloname);
                 await com1.ExecuteNonQueryAsync();
                 return true;

@@ -57,8 +57,7 @@ export class HclosComponent implements OnInit {
     this.spinner=true;
     $('#datatable').DataTable().destroy();
     this.serv.GetCLOS('api/Weightage', '/GetCLOSAssessment', {
-      'Program_Id': this.programselection,
-      "course_ID": this.Courseselection
+      "cloname": this.Courseselection
     }).subscribe(response => {
       if (response.length!=0) {
         this.mapclodetails = response;

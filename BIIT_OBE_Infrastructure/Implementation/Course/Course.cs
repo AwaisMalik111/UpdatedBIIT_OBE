@@ -414,6 +414,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com1.CommandType = CommandType.StoredProcedure;
                 com1.Parameters.AddWithValue("name", ExcelList.Course_Title);
                 com1.Parameters.AddWithValue("code", ExcelList.Course_Code);
+                com1.Parameters.AddWithValue("Program", ExcelList.Program);
                 com1.Parameters.AddWithValue("teacher", ExcelList.Teacher);
                 com1.Parameters.AddWithValue("section", ExcelList.Section);
                 com1.ExecuteNonQuery();
@@ -441,6 +442,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                     obj = new ExcelAllocation();
                     obj.Course_Title = sdr["CourseName"].ToString();
                     obj.Course_Code = sdr["CourseCode"].ToString();
+                    obj.Program = sdr["Program"].ToString();
                     obj.Section = sdr["Section"].ToString();
                     list.Add(obj);
                 }
