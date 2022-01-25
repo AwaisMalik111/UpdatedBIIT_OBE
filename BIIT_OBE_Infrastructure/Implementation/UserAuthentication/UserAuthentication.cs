@@ -36,7 +36,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("email", obj.remail);
                 com.Parameters.AddWithValue("password", obj.rpassword);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     //Token = new Token(Configuration);
@@ -54,7 +54,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 list.Add(obj);
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -70,7 +70,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 string query = "ReadAllUser";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new UserModal();
@@ -87,7 +87,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 }
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -103,7 +103,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 string query = "getAllStudent";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new UserModal();
@@ -120,7 +120,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 }
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -136,11 +136,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("id", obj.id);
                 com.Parameters.AddWithValue("createdby", obj.createdBy);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -162,11 +162,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 com.Parameters.AddWithValue("password", obj.password);
                 com.Parameters.AddWithValue("createdby", obj.createdBy);
                 com.Parameters.AddWithValue("role", obj.role);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -189,11 +189,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 com.Parameters.AddWithValue("password", obj.password);
                 com.Parameters.AddWithValue("createdby", obj.createdBy);
                 com.Parameters.AddWithValue("role", obj.role);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;

@@ -67,11 +67,6 @@ namespace BIIT_OBE.Controllers
             List<CLOsModal> list = await _course.TeacherGetAllCLOs(obj);
             return list;
         }
-        [HttpPost("GetSection")]
-        public async void GetSection([FromBody] section obj)
-        {
-            
-        }
         [HttpPost("getCourseDetails")]
         public async Task<List<CourseDetail>> getCourseDetails([FromBody] CourseDetail obj)
         {

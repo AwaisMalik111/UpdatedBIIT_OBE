@@ -23,6 +23,11 @@ namespace BIIT_OBE.Controllers
             List<PrgramModal> list = await _program.getallprogram();
             return list;
         }
+        [HttpGet("GetallNotification")]
+        public async Task<int> GetallNotification() {
+            int list =await _program.GetallNotification();
+            return list;
+    }
         [HttpPost("addnewprogram")]
         public async Task<bool> AddNewProgrma([FromBody] PrgramModal obj)
         {

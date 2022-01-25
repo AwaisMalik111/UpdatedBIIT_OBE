@@ -12,6 +12,7 @@ namespace BIIT_OBE_Infrastructure.Interfaces.Programs
         Task<List<PrgramModal>> getallprogram();
         Task<List<PloModal>> getallplos(PloModal programName);
         Task<List<PloModal>> GetPLOs(PloModal obj);
+        Task<int> GetallNotification();
         Task<bool> UpdatePLO(PloModal obj);
         Task<bool> DeletePLO(PloModal obj);
         Task<List<PloModal>> GetAllUnassignedPLOS(PloModal obj);

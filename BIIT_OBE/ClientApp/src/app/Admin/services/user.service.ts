@@ -159,4 +159,7 @@ export class UserService {
   GetAllAssignCourses<T>(ControllerName: any, MethodName: any) {
     return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
   }
+  GetallNotification<T>(ControllerName: any, MethodName: any) {
+    return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
+  }
 }

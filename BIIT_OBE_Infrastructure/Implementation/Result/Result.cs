@@ -30,7 +30,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("TeacherName", name.Teacher);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new section();
@@ -58,7 +58,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("TeacherName", name.Teacher);
                 com.Parameters.AddWithValue("section", name.Section);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new section();
@@ -87,7 +87,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 com.Parameters.AddWithValue("TeacherName", name.Teacher);
                 com.Parameters.AddWithValue("section", name.Section);
                 com.Parameters.AddWithValue("course", name.courses);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new section();
@@ -117,7 +117,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 com.Parameters.AddWithValue("section", name.Section);
                 com.Parameters.AddWithValue("course", name.courses);
                 com.Parameters.AddWithValue("examtype", name.examtype);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new section();
@@ -145,7 +145,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("Examid", name.examid);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new section();
@@ -175,12 +175,12 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                     com.Parameters.AddWithValue("assessmentId", obj.assessemntId);
                     com.Parameters.AddWithValue("Marks", x);
                     com.Parameters.AddWithValue("regno", obj.ListOfMarks[i].regno);
-                    com.ExecuteNonQuery();
+                    await com.ExecuteNonQueryAsync();
                 }
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -197,7 +197,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
 
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new ResultDetails();
@@ -230,7 +230,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("Regno", obj.regno);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new ResultDetails();
@@ -264,7 +264,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("assesid", obj.assesid);
                 com.Parameters.AddWithValue("Regno", obj.regno);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new ResultDetails();
@@ -294,7 +294,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 string query = "ResultDetails";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new ResultDetails();
@@ -328,7 +328,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("regno",obj.regno);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new ResultDetails();

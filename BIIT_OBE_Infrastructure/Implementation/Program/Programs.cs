@@ -31,7 +31,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 string query = "ViewAllPrograms";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr =await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new PrgramModal();
@@ -43,7 +43,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -61,7 +61,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("programID", programName.ploname);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr =await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new PloModal();
@@ -74,7 +74,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -92,7 +92,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("programid", programName.Programid);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr =await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new PloModal();
@@ -105,7 +105,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -123,7 +123,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("programid", programName.Programid);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr =await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new PloModal();
@@ -136,7 +136,55 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+        public async Task<int> GetallNotification()
+        {
+            try
+            {
+                int x = 0;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "select count(*) count from tbl_TeacherCLO_Assessment where isApprov=1";
+                SqlCommand com = new SqlCommand(query, con);
+                SqlDataReader sdr =await com.ExecuteReaderAsync();
+                while (sdr.Read())
+                {
+                    x = int.Parse(sdr["count"].ToString());
+                }
+                con.Close();
+                x = x + await GetaNotification();
+                return x;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+        public async Task<int> GetaNotification()
+        {
+            try
+            {
+                int x = 0;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "select count(*) count from TeacherCLO_PLO_Mapping where isApprov=1";
+                SqlCommand com = new SqlCommand(query, con);
+                SqlDataReader sdr =await com.ExecuteReaderAsync();
+                while (sdr.Read())
+                {
+                    x = int.Parse(sdr["count"].ToString());
+                }
+                con.Close();
+
+                return x;
+            }
+            catch (Exception)
             {
                 throw;
             }
@@ -156,11 +204,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 com.Parameters.AddWithValue("name", obj.ploHead);
                 com.Parameters.AddWithValue("description", obj.plodesc);
                 com.Parameters.AddWithValue("plopass", obj.plopass);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -180,11 +228,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 com.Parameters.AddWithValue("name", obj.pname);
                 com.Parameters.AddWithValue("description", obj.pdesc);
                 com.Parameters.AddWithValue("createdby", obj.createdBy);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -202,7 +250,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("PLO", obj.ploHead);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr =await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     id = int.Parse(sdr["PLO_Id"].ToString());
@@ -232,7 +280,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                     com.Parameters.AddWithValue("PLO", obj.plodesc);
                     com.Parameters.AddWithValue("PLOHead", obj.ploHead);
                     com.Parameters.AddWithValue("plopass", obj.plopass);
-                    com.ExecuteNonQuery();
+                    await com.ExecuteNonQueryAsync();
                     con.Close();
                 }
                 if (obj.list.Count>0)
@@ -246,14 +294,14 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                         com.Parameters.AddWithValue("PLO", obj.list[i].description);
                         com.Parameters.AddWithValue("PLOHead", obj.list[i].heading);
                         com.Parameters.AddWithValue("plopass", obj.plopass);
-                        com.ExecuteNonQuery();
+                        await com.ExecuteNonQueryAsync();
                     }
                 }
                 
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -270,11 +318,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 com.Parameters.AddWithValue("name", obj.pname);
                 com.Parameters.AddWithValue("description", obj.pdesc);
                 com.Parameters.AddWithValue("createdby", obj.createdBy);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -293,11 +341,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("id", obj.id);
                 com.Parameters.AddWithValue("createdby", obj.createdBy);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -314,11 +362,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Program
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("id", obj.id);
                 com.Parameters.AddWithValue("programid", obj.Programid);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;

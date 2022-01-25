@@ -42,7 +42,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -71,7 +71,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -100,7 +100,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -122,7 +122,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -148,7 +148,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -167,7 +167,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 await com1.ExecuteNonQueryAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -183,7 +183,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("ProgramId", obj.Program_Id);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new CLO_PLO_Mapping();
@@ -196,7 +196,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -215,7 +215,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 com.Parameters.AddWithValue("ProgramId", obj.Program_Id);
                 com.Parameters.AddWithValue("CourseId", obj.Course_Id);
                 com.Parameters.AddWithValue("CLOId", obj.CLO_Id);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     getId = new PLO_List();
@@ -226,7 +226,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -243,7 +243,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("cloname", obj.cloname);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AssignWeightage();
@@ -260,7 +260,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -280,7 +280,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 com.Parameters.AddWithValue("CLOId", obj.CLO_Id);
                 com.Parameters.AddWithValue("ProgramId", obj.Program_Id);
                 com.Parameters.AddWithValue("CourseId", obj.Course_Id);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AssignWeightage();
@@ -296,7 +296,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -313,7 +313,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("PLO_ID", obj.CLO_Id);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new CLO_PLO_Mapping();
@@ -325,7 +325,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -342,7 +342,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("CourseTitle", obj.cloname);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AssignWeightage();
@@ -359,7 +359,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -375,7 +375,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 string query = "GetAllPloNotify";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AssignWeightage();
@@ -393,7 +393,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -409,7 +409,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 string query = "GetAllAssessmentNotify";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AssignWeightage();
@@ -436,7 +436,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -452,7 +452,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 string query = "GetAlreadySetWeightageOfPLO";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AssignWeightage();
@@ -463,7 +463,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -480,7 +480,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("coursename", obj.coursename);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new CLO_PLO_Mapping();
@@ -492,7 +492,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -536,7 +536,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 string query = "GetAllExams";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AddExam();
@@ -554,7 +554,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -570,7 +570,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 string query = "GetAllPloNotifing";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AddExam();
@@ -584,7 +584,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -600,7 +600,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 string query = "GetAllAssignCourses";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AddExam();
@@ -610,7 +610,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -626,7 +626,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 string query = "TeachPLOMapNotify";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     get = new AddExam();
@@ -654,7 +654,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -677,7 +677,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -702,7 +702,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 await com1.ExecuteNonQueryAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

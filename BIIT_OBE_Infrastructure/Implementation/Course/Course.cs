@@ -32,11 +32,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.Parameters.AddWithValue("code", obj.code);
                 com.Parameters.AddWithValue("coursetype", obj.coursetype);
                 com.Parameters.AddWithValue("createdby", obj.createdBy);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -54,11 +54,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.Parameters.AddWithValue("id", obj.id);
                 com.Parameters.AddWithValue("name", obj.name);
                 com.Parameters.AddWithValue("code", obj.code);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -81,12 +81,12 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                     com.Parameters.AddWithValue("coursetype", obj.coursetype);
                     com.Parameters.AddWithValue("createdby", obj.createdBy);
                     com.Parameters.AddWithValue("programname", obj.programs[i].id);
-                    com.ExecuteNonQuery();
+                    await com.ExecuteNonQueryAsync();
                 }
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -104,11 +104,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("id", obj.id);
                 com.Parameters.AddWithValue("createdby", obj.createdBy);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -123,11 +123,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("id", obj.id);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -143,11 +143,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("coursename", obj.name);
                 com.Parameters.AddWithValue("cloname", obj.cloname);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -165,7 +165,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("ProgramId", clo.id);
                 com.Parameters.AddWithValue("CourseId", clo.courseID);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new CLOsModal();
@@ -177,7 +177,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -194,7 +194,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("Coursename", clo.Coursename);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new CLOsModal();
@@ -205,7 +205,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -222,7 +222,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("ProgramName", programname.id);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new CourseModal();
@@ -235,7 +235,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -253,7 +253,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("programId", obj.ProgramId);
                 com.Parameters.AddWithValue("CourseId", obj.courseID);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     details = new GetCLO();
@@ -268,7 +268,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -285,7 +285,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("name", obj.name);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new CourseDetail();
@@ -299,7 +299,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 con.Close();
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -318,10 +318,10 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.Parameters.AddWithValue("ProgramId", obj.ProgramId);
                 com.Parameters.AddWithValue("name", obj.cloName);
                 com.Parameters.AddWithValue("desc", obj.cloDesc);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -338,10 +338,10 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.Parameters.AddWithValue("Coursename", obj.Coursename);
                 com.Parameters.AddWithValue("name", obj.cloName);
                 com.Parameters.AddWithValue("desc", obj.cloDesc);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -358,11 +358,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com.Parameters.AddWithValue("name", obj.cloName);
                 com.Parameters.AddWithValue("desc", obj.cloDesc);
                 com.Parameters.AddWithValue("createdBy", obj.createdBy);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -380,7 +380,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 string query = "ExelAllocationCourse";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new CourseModal();
@@ -389,14 +389,14 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                     {
                         if (obj.name == ExcelList[i].Course_Title)
                         {
-                            AllocateCourse(ExcelList[i]);
+                            await AllocateCourse(ExcelList[i]);
                         }
                     }
                 }
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
                 throw;
@@ -417,10 +417,10 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com1.Parameters.AddWithValue("Program", ExcelList.Program);
                 com1.Parameters.AddWithValue("teacher", ExcelList.Teacher);
                 com1.Parameters.AddWithValue("section", ExcelList.Section);
-                com1.ExecuteNonQuery();
+                await com1.ExecuteNonQueryAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -436,7 +436,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("name", obj.Teacher);
-                SqlDataReader sdr = com.ExecuteReader();
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
                 {
                     obj = new ExcelAllocation();
@@ -467,12 +467,12 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                     com.CommandType = CommandType.StoredProcedure;
                     com.Parameters.AddWithValue("ploid", obj.abstractMappingArray[i].ploid);
                     com.Parameters.AddWithValue("coursename", obj.abstractMappingArray[i].coursename);
-                    com.ExecuteNonQuery();
+                    await com.ExecuteNonQueryAsync();
                 }
                 con.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/Admin/services/user.service';
 declare const $: any;
 @Component({
   selector: 'app-hod-sidebar',
@@ -9,10 +10,15 @@ declare const $: any;
 export class HODSidebarComponent implements OnInit {
   active: any;
   click: number;
-  constructor(private route: Router) {
+  counter:number;
+  constructor(private route: Router,
+    private serv: UserService) {
     this.click = 1;
+    this.counter=0;
   }
   ngOnInit() {
+    this.getAllPrograms();
+    $("#CountNotify").hide();
     if (this.route.url.endsWith('HodViewResult')) this.Result();
     if (this.route.url.endsWith('Approved')) this.Approved();
     if (this.route.url.endsWith('clos')) this.clos();
@@ -23,7 +29,13 @@ export class HODSidebarComponent implements OnInit {
     if (this.route.url.endsWith('Cloweightage')) this.SetCLOWeightage();
     if (this.route.url.endsWith('Notify')) this.Notify();
   }
-
+  getAllPrograms() {
+    this.serv.GetallNotification('api/Program', '/GetallNotification').subscribe(response => {
+        $("#CountNotify").show(); 
+        this.counter = response;
+        $("#CountNotify").text(response);
+    });
+  }
   allocation() {
     this.active = "dash";
     $("#" + this.active).addClass('active');
