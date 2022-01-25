@@ -145,5 +145,11 @@ namespace BIIT_OBE.Controllers
              List<AddExam> response = await _weightage.TeachPLOMapNotify();
             return response;
         }
+        [HttpGet("GetAllAssignCourses")]
+        public async Task<List<AddExam>> GetAllAssignCourses()
+        {
+             List<AddExam> response = await _weightage.GetAllAssignCourses();
+            return response;
+        }
     }
 }

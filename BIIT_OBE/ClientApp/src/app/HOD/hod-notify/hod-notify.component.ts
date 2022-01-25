@@ -64,7 +64,6 @@ export class HodNotifyComponent implements OnInit {
   ApproveAssessment(coursename, clO_Name) {
     this.spinner = true;
     var total = this.assignment + this.final + this.lab + this.mid + this.quiz + this.project;
-    alert(total);
     if (total > 100 || total <= 0) {
       alert("Total weightage Range(0-100).Please assign again....!");
       setTimeout(() => {

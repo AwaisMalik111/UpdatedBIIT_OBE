@@ -503,7 +503,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
             {
                 SqlConnection con = new SqlConnection(connString);
                 con.Open();
-                for (int i = 0; i < obj.assessment_Id.Count; i++)
+                for (int i = 0; i < obj.clo_name.Count; i++)
                 {
                     string query = "AddNewExam";
                     SqlCommand com1 = new SqlCommand(query, con);
@@ -514,7 +514,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                     com1.Parameters.AddWithValue("totalmarks", obj.totalMark);
                     com1.Parameters.AddWithValue("totalQuestions", obj.totalQuestion);
                     com1.Parameters.AddWithValue("assessmenttype", obj.assessmentType);
-                    com1.Parameters.AddWithValue("assessment_Id", obj.assessment_Id[i].id);
+                    com1.Parameters.AddWithValue("Cloname", obj.clo_name[i].name);
                     com1.Parameters.AddWithValue("CLO_weightage", obj.CLOWeightage[i].value);
                     await com1.ExecuteNonQueryAsync();
                 }
@@ -524,7 +524,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
             {
                 throw;
             }
-        }  
+        }
         public async Task<List<AddExam>> getAllExams()
         {
             try
@@ -540,17 +540,15 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 while (sdr.Read())
                 {
                     get = new AddExam();
-                    get.examid = int.Parse(sdr["Exam_Id"].ToString());
-                    get.id = int.Parse(sdr["Assessment_Id"].ToString());
-                    get.Teacher = sdr["TeacheraName"].ToString();
-                    get.Course_name = sdr["CourseName"].ToString();
-                    get.assessmentType = sdr["ExamType"].ToString();
+                    get.examid = int.Parse(sdr["ExamId"].ToString());
+                    get.Teacher = sdr["teacher"].ToString();
+                    get.Course_name = sdr["Coursename"].ToString();
+                    get.assessmentType = sdr["examtype"].ToString();
                     get.Section = sdr["Section"].ToString();
-                    get.totalQuestion = sdr["totalQuestion"].ToString();
-                    get.totalMark = sdr["TotalMarks"].ToString();
-                    get.CLO = sdr["CLO_Weightage"].ToString();
-                    get.cloname = sdr["CLO_Name"].ToString();
-                    get.clodesc = sdr["CLO_Desc"].ToString();
+                    get.totalQuestion = sdr["totalQues"].ToString();
+                    get.totalMark = int.Parse(sdr["totalMarks"].ToString());
+                    get.CLO = sdr["weight"].ToString();
+                    get.cloname = sdr["cloname"].ToString();
                     list.Add(get);
                 }
                 con.Close();
@@ -560,7 +558,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
             {
                 throw;
             }
-        }  
+        }
         public async Task<List<AddExam>> GetAllPloNotifing()
         {
             try
@@ -591,6 +589,32 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 throw;
             }
         }
+        public async Task<List<AddExam>> GetAllAssignCourses()
+        {
+            try
+            {
+                List<AddExam> list = new List<AddExam>();
+                AddExam get;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "GetAllAssignCourses";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                SqlDataReader sdr = com.ExecuteReader();
+                while (sdr.Read())
+                {
+                    get = new AddExam();
+                    get.Course_name = sdr["CourseName"].ToString();
+                    list.Add(get);
+                }
+                con.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task<List<AddExam>> TeachPLOMapNotify()
         {
             try
@@ -611,7 +635,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                     get.Teacher = sdr["PLO_Name"].ToString();
                     get.assessmentType = sdr["PLO_desc"].ToString();
                     get.status = sdr["isApprov"].ToString();
-                    if (get.status=="False")
+                    if (get.status == "False")
                     {
                         get.status = "Approved";
                     }
@@ -619,7 +643,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                     {
                         get.status = "Pending";
                     }
-                    get.examid = int.Parse(sdr["Weightage"].ToString());
+                    string x = sdr["Weightage"].ToString();
+                    if (x != "")
+                    {
+                        get.examid = int.Parse(x);
+                    }
                     get.id = int.Parse(sdr["PLO_Id"].ToString());
                     list.Add(get);
                 }

@@ -130,14 +130,14 @@
                         </div>
                         <div class="row ml-2" *ngFor="let item of AssignCLOSDetail;let idx=index">
                             <div class="col-md-4">
-                                <input autocomplete="off" (change)="SelectedCLOsArray(item.assessment_Id,item.clO_Id,idx,$event.target.checked)"
+                                <input autocomplete="off" (change)="SelectedCLOsArray(item.clO_Name,idx,$event.target.checked)"
                                     class="form-check-input shadow" type="checkbox" value="">
                                 <details>
                                     <summary>CLO{{item.clO_Id+1}}</summary>
                                     <small>CLO Name : {{item.clO_Name}}</small><br>
                                     <small>CLO Description : {{item.clO_Desc}}</small><br>
                                     <hr>
-                                    <p>Assessment Set By HOD : </p>
+                                    <p>Assessment Approved By HOD : </p>
                                     <hr>
                                     <small>Quiz : {{item.quiz}}%</small><br>
                                     <small>Assignment : {{item.assignment}}%</small><br>
@@ -148,7 +148,7 @@
                                 </details>
                             </div><br><br>
                             <div class="col-md-4">
-                                <input type="number" id="{{item.clO_Id}}" disabled (change)="getWeightageArray($event.target.value,item.clO_Id)"
+                                <input type="number" id="{{idx}}" disabled (change)="getWeightageArray($event.target.value,item.clO_Id)"
                                     class="form-control shadow" min="0" max="100">
                             </div>
                             <br><br>

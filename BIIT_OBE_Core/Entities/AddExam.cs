@@ -11,7 +11,7 @@ namespace BIIT_OBE_Core.Entities
         public string Teacher { get; set; }
         public string Course_name { get; set; }
         public string assessmentType { get; set; }
-        public string totalMark { get; set; }
+        public int totalMark { get; set; }
         public string totalQuestion { get; set; }
         public string Section { get; set; }
         public string CLO { get; set; }
@@ -20,11 +20,11 @@ namespace BIIT_OBE_Core.Entities
         public string status { get; set; }
         public int id { get; set; }
         public int examid { get; set; }
-        public List<CloList> assessment_Id { get; set; }
+        public List<CloList> clo_name { get; set; }
         public List<CloWeightage> CLOWeightage { get; set; }
     }
     public class CloList {
-        public int id{ get; set; }
+        public string name{ get; set; }
     }
     public class CloWeightage
     {

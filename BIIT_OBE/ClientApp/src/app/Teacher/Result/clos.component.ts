@@ -25,10 +25,10 @@ export class ClosComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.ViewPlo();
     setTimeout(()=>{ 
       this.spinner=false;
 }, 600);
-    this.ViewPlo();
     setTimeout(function () { $('#datatable').DataTable() }, 800);
   }
   ViewCourse(a,b,x,y){

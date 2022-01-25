@@ -14,7 +14,7 @@ export class ExamsComponent implements OnInit {
   section: any;
   examtype: any;
   result: any;
-  totalMarks: any;
+  totalMarks: number;
   Allstudents: any;
   ObtainedMarks: any;
   assessemntId: any;
@@ -53,25 +53,28 @@ export class ExamsComponent implements OnInit {
       }
     });
   }
-  GetExamMarks(x, a, b, c) {
+  GetExamMarks(x, a, b, c,marks) {
+    this.assessemntId=x;
     this.coursename = c;
     this.section = a;
     this.examtype = b;
-    this.serv.GetExamMarks('api/Result', '/GetExamMarks', {
-      'examid': x
-    }).subscribe(
-      response => {
-        if (response.length != 0) {
-          debugger;
-          this.result = response;
-          this.assessemntId=response[0].assesid;
-          this.totalMarks = response[0].examid;
-        }
-      });
+    this.totalMarks=marks;
+    // this.serv.GetExamMarks('api/Result', '/GetExamMarks', {
+    //   'examid': x
+    // }).subscribe(
+    //   response => {
+    //     if (response.length != 0) {
+    //       debugger;
+    //       this.result = response;
+    //       this.assessemntId=response[0].assesid;
+    //       this.totalMarks = response[0].examid;
+    //     }
+    //   });
   }
   getMraks(x, y) {
     if (y > this.totalMarks) {
       alert("Obtained marks > total marks.Please re-enter the obtained marks...!");
+      return;
     }
     if (x != '' || x != "") {
       this.ObtainedMarks.push({ regno: x, totalmarks: y })
@@ -80,7 +83,6 @@ export class ExamsComponent implements OnInit {
     }
   }
   SaveResult(){
-    debugger;
     this.serv.SaveResult('api/Result', '/SaveResult', {
       'assessemntId':this.assessemntId,
       'ListOfMarks':this.ObtainedMarks

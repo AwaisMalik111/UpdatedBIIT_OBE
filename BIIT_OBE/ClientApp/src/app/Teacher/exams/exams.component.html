@@ -33,7 +33,7 @@
                                 <td>
                                     <details>
                                         <summary>
-                                            CLO{{item.id}}
+                                            CLO{{item.id+1}}
                                         </summary>
                                         <small class="custom_lineBreak">{{item.cloname}} : {{item.clodesc}}</small>
                                     </details>
@@ -91,7 +91,7 @@
                         <tr *ngFor="let item of Allstudents">
                             <td>{{item.name}}</td>
                             <td>{{item.remail}}</td>
-                            <td><input type="text" class="shadow" style="border: aliceblue;width: 20%;"
+                            <td><input type="number" class="shadow" style="border: aliceblue;width: 20%;"
                                     (change)="getMraks(item.remail,$event.target.value)"> /{{totalMarks}}</td>
                         </tr>
                     </tbody>

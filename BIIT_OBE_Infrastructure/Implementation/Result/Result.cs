@@ -303,8 +303,8 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                     obj.ploname= sdr["PLO_Name"].ToString();
                     obj.plodesc= sdr["PLO_desc"].ToString();
                     obj.plopass= sdr["PLO_Passing"].ToString();
-                    obj.weigh = sdr["Weightage"].ToString();
-                    obj.cloweigh = sdr["CLO_Weightage"].ToString();
+                    obj.weigh = sdr["weightage"].ToString();
+                    obj.cloweigh = sdr["weight"].ToString();
                     obj.omarks = sdr["ObtainedMarks"].ToString();
                     obj.tmarks = sdr["TotalMarks"].ToString();
                     list.Add(obj);
@@ -338,7 +338,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                     obj.plodesc = sdr["PLO_desc"].ToString();
                     obj.plopass = sdr["PLO_Passing"].ToString();
                     obj.weigh = sdr["Weightage"].ToString();
-                    obj.cloweigh = sdr["CLO_Weightage"].ToString();
+                    obj.cloweigh = sdr["weight"].ToString();
                     obj.omarks = sdr["ObtainedMarks"].ToString();
                     obj.tmarks = sdr["TotalMarks"].ToString();
                     list.Add(obj);

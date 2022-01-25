@@ -48,7 +48,7 @@ export class AssignedCoursesComponent implements OnInit {
   }
   GetCourseDetails(item) {
     this.code = item.course_Code;
-    this.section = item.section;
+    this.section = item.program+item.section;
     this.title = item.course_Title;
     this.GetAssignedCLOs();
   }
@@ -67,13 +67,13 @@ export class AssignedCoursesComponent implements OnInit {
       }
     });
   }
-  SelectedCLOsArray(y, x, index, checkedProp) {
+  SelectedCLOsArray(x, index, checkedProp) {
     if (checkedProp) {
-      $("#" + x).removeAttr('disabled');
-      this.SelectedCLO.push({ id: y, checked: true })
+      $("#" + index).removeAttr('disabled');
+      this.SelectedCLO.push({ name: x, checked: true })
     } else {
-      this.SelectedCLO.splice(y, 1);
-      $("#" + x).prop('disabled', true);
+      this.SelectedCLO.splice(x, 1);
+      $("#" + index).prop('disabled', true);
     }
   }
   getWeightageArray(x, id) {
@@ -101,7 +101,7 @@ export class AssignedCoursesComponent implements OnInit {
       {
         'Teacher': GlobalService.uname,
         'Course_name': this.title,
-        'assessment_Id': this.SelectedCLO,
+        'clo_name': this.SelectedCLO,
         'assessmentType': this.assessmentType,
         'totalMark': this.totalMark,
         'totalQuestion': this.totalQuestion,

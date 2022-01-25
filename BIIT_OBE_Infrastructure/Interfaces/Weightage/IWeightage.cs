@@ -28,6 +28,7 @@ namespace BIIT_OBE_Infrastructure.Interfaces.Weightage
         public Task<List<AddExam>> getAllExams();
         public Task<List<AddExam>> GetAllPloNotifing();
         public Task<List<AddExam>> TeachPLOMapNotify();
+        public Task<List<AddExam>> GetAllAssignCourses();
         public Task<bool> TeacherMapPloWithClo(CLO_PLO_Mapping obj);
         public Task<bool> ApproveAssessment(CLO_PLO_Mapping obj);
     }
