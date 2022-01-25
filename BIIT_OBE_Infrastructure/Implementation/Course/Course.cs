@@ -51,7 +51,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 string query = "UpdateCLO";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("id", obj.id);
+                com.Parameters.AddWithValue("cloid", obj.id);
                 com.Parameters.AddWithValue("name", obj.name);
                 com.Parameters.AddWithValue("code", obj.code);
                 await com.ExecuteNonQueryAsync();
@@ -198,6 +198,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 while (sdr.Read())
                 {
                     obj = new CLOsModal();
+                    obj.id = int.Parse(sdr["id"].ToString());
                     obj.cloName = sdr["CLO"].ToString();
                     obj.cloDesc = sdr["Desc"].ToString();
                     list.Add(obj);

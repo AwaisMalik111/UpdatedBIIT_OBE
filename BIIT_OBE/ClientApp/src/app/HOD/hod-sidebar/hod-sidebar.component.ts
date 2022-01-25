@@ -10,11 +10,9 @@ declare const $: any;
 export class HODSidebarComponent implements OnInit {
   active: any;
   click: number;
-  counter:number;
   constructor(private route: Router,
     private serv: UserService) {
     this.click = 1;
-    this.counter=0;
   }
   ngOnInit() {
     this.getAllPrograms();
@@ -31,9 +29,10 @@ export class HODSidebarComponent implements OnInit {
   }
   getAllPrograms() {
     this.serv.GetallNotification('api/Program', '/GetallNotification').subscribe(response => {
+      if(response>0){  
         $("#CountNotify").show(); 
-        this.counter = response;
         $("#CountNotify").text(response);
+      }
     });
   }
   allocation() {
