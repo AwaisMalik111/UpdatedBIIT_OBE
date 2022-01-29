@@ -34,7 +34,6 @@ export class PloMappingComponent implements OnInit {
   ViewCourse(a,b,x,y){
     this.clo=b+ " : "+a
     this.serv.ViewCLO('api/Result', '/ViewCourse',{
-      'assesid':x,
       'regno':y
     }).subscribe(response => {
       if (response) {

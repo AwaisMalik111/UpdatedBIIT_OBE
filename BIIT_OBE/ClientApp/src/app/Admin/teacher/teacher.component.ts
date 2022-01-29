@@ -50,6 +50,8 @@ spinner:boolean;
       this.spinner=false;
 }, 800);
     this.GetAllTeachers();  
+    setTimeout(()=>{ 
+      $('#datatable').DataTable() }, 1000); 
   }
   AddNewUser(){
     if(this.password!=this.cpassword){

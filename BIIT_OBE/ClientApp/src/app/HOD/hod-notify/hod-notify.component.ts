@@ -92,6 +92,7 @@ export class HodNotifyComponent implements OnInit {
     this.spinner = true;
     this.serv.GetAllPloNotifing('api/Weightage', '/GetAllPloNotifing').subscribe(response => {
       if (response.length != 0) {
+        alert(JSON.stringify(response));
         this.details = response;
         setTimeout(() => {
           this.spinner = false;
@@ -107,7 +108,7 @@ export class HodNotifyComponent implements OnInit {
   setWeightage(x) {
     this.weightage = x;
   }
-  Approvemapping(course_name, cloname, id) {
+  Approvemapping(course_name, cloname, id,x) {
     this.spinner = true;
     this.serv.Approvemapping('api/Weightage', '/Approvemapping',
       { 'coursename': course_name, 'CLO_Name': cloname, 'id': id, 'weightage': this.weightage }).subscribe(response => {

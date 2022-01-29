@@ -132,6 +132,7 @@
                                     <th>Course Name</th>
                                     <th>CLO Name</th>
                                     <th>PLO</th>
+                                    <th>Evaluated</th>
                                     <th>Weightage</th>
                                     <th>Approval</th>
                                 </tr>
@@ -149,9 +150,10 @@
                                             <p class="custom_lineBreak">{{item.assessmentType}}</p>
                                         </details>
                                     </td>
-                                    <td><input type="text" (change)="setWeightage($event.target.value)" style="width:20%">%</td>
+                                    <td>{{item.totalMark}}</td>
+                                    <td><input type="number" (change)="setWeightage($event.target.value)" style="width:20%">%</td>
                                     <td > 
-                                        <button (click)="Approvemapping(item.course_name,item.cloname,item.id)" class="mr-3 btn">
+                                        <button (click)="Approvemapping(item.course_name,item.cloname,item.id,item.totalMark)" class="mr-3 btn">
                                         <svg width="32" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd"

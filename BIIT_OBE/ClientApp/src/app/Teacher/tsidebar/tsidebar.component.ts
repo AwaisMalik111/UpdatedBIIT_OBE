@@ -13,6 +13,7 @@ export class TsidebarComponent implements OnInit {
     this.click = 1;
   }
   ngOnInit() {
+    if (this.route.url.endsWith('FCARC')) this.FCARC();
     if (this.route.url.endsWith('AssignedCoursesComponent')) this.AssignedCoursesComponent();
     if (this.route.url.endsWith('TeacherNotify')) this.TeacherNotify();
     if (this.route.url.endsWith('TeacherViewResult')) this.ClosComponent();
@@ -37,5 +38,10 @@ export class TsidebarComponent implements OnInit {
     this.active = "TeacherNotify";
     $("#" + this.active).addClass('active');
     this.route.navigate(["/TeacherNotify"]);
+  }
+  FCARC() {
+    this.active = "FCARC";
+    $("#" + this.active).addClass('active');
+    this.route.navigate(["/FCARC"]);
   }
 }

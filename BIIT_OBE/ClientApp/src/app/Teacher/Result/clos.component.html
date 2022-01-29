@@ -91,10 +91,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of clos">
+                            <tr *ngFor="let item of clos;let id=index">
                                 <td class="custom_lineBreak">
                                     <details>
-                                        <summary>CLO{{item.cloid}}</summary>
+                                        <summary>CLO{{id+1}}</summary>
                                        {{item.cloname}} : {{item.clodesc}}
                                     </details>
                                 </td>

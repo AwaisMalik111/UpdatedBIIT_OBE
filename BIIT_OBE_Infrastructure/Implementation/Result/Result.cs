@@ -234,15 +234,14 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 while (sdr.Read())
                 {
                     obj = new ResultDetails();
-                    obj.assesid = int.Parse(sdr["Assessment_Id"].ToString());
-                    obj.cloid = int.Parse(sdr["CLO_Id"].ToString());
                     obj.regno = sdr["Student_Reg"].ToString();
-                    obj.cloname = sdr["CLO_Name"].ToString();
-                    obj.clodesc = sdr["CLO_Desc"].ToString();
-                    obj.cloweigh = sdr["CLO_Weightage"].ToString();
+                    obj.cloname = sdr["cloname"].ToString();
+                    obj.clodesc = sdr["clodesc"].ToString();
+                    obj.cloweigh = sdr["weight"].ToString();
                     obj.omarks = sdr["ObtainedMarks"].ToString();
-                    obj.tmarks = sdr["TotalMarks"].ToString();
+                    obj.tmarks = sdr["totalMarks"].ToString();
                     list.Add(obj);
+                    break;
                 }
                 con.Close();
                 return list;
@@ -262,7 +261,6 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                 string query = "ViewCourse";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("assesid", obj.assesid);
                 com.Parameters.AddWithValue("Regno", obj.regno);
                 SqlDataReader sdr = await com.ExecuteReaderAsync();
                 while (sdr.Read())
@@ -274,6 +272,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                     obj.tmarks = sdr["TotalMarks"].ToString();
                     obj.section = sdr["Section"].ToString();
                     list.Add(obj);
+                    break;
                 }
                 con.Close();
                 return list;

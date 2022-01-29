@@ -29,6 +29,7 @@ import { AssignedCoursesComponent } from './Teacher/assigned-courses/assigned-co
 import { TeacherClosComponent } from './Teacher/teacher-clos/teacher-clos.component';
 import { TeacherNotifyComponent } from './Teacher/teacher-notify/teacher-notify.component';
 import { ApprovedComponent } from './HOD/approved/approved.component';
+import { FCARComponent } from './Teacher/fcar/fcar.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ApprovedComponent } from './HOD/approved/approved.component';
     ApprovedComponent,
     TeacherNotifyComponent,
     ResultComponent,
+    FCARComponent,
     PloMappingComponent,
     CLOManagementComponent,
     HclosComponent,
@@ -82,6 +84,7 @@ import { ApprovedComponent } from './HOD/approved/approved.component';
       { path: 'ExamsComponent', component: ExamsComponent, },
       { path: 'Closmanagement', component: TeacherClosComponent, },
       { path: 'TeacherNotify', component: TeacherNotifyComponent, },
+      { path: 'FCARC', component: FCARComponent, },
       {path:'StudentViewResult',component:ResultComponent}
     ]),
     BrowserAnimationsModule,

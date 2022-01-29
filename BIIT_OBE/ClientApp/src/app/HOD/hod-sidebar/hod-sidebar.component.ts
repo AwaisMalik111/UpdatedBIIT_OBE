@@ -15,8 +15,6 @@ export class HODSidebarComponent implements OnInit {
     this.click = 1;
   }
   ngOnInit() {
-    this.getAllPrograms();
-    $("#CountNotify").hide();
     if (this.route.url.endsWith('HodViewResult')) this.Result();
     if (this.route.url.endsWith('Approved')) this.Approved();
     if (this.route.url.endsWith('clos')) this.clos();
@@ -25,16 +23,8 @@ export class HODSidebarComponent implements OnInit {
     if (this.route.url.endsWith('course')) this.cour();
     if (this.route.url.endsWith('program')) this.prog();
     if (this.route.url.endsWith('Cloweightage')) this.SetCLOWeightage();
-    if (this.route.url.endsWith('Notify')) this.Notify();
   }
-  getAllPrograms() {
-    this.serv.GetallNotification('api/Program', '/GetallNotification').subscribe(response => {
-      if(response>0){  
-        $("#CountNotify").show(); 
-        $("#CountNotify").text(response);
-      }
-    });
-  }
+
   allocation() {
     this.active = "dash";
     $("#" + this.active).addClass('active');

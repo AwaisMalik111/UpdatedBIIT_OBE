@@ -111,8 +111,23 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
             {
                 SqlConnection con = new SqlConnection(connString);
                 con.Open();
-                string query = "Approvemapping";
-                SqlCommand com = new SqlCommand(query, con);
+                string query;
+                SqlCommand com;
+                int x = await GettotalPLOEvaluation(obj.id);
+                if (x > 0)
+                {
+                    query = "update tbl_PLOTotalCalculation set PLO_Weightage=PLO_Weightage+'" + obj.weightage + "' where PLO_Id='" + obj.id + "'";
+                    com = new SqlCommand(query, con);
+                    await com.ExecuteNonQueryAsync();
+                }
+                else
+                {
+                    query = "insert into tbl_PLOTotalCalculation values('" + obj.id + "','" + obj.weightage + "')";
+                    com = new SqlCommand(query, con);
+                    await com.ExecuteNonQueryAsync();
+                }
+                query = "Approvemapping";
+                com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("plo", obj.id);
                 com.Parameters.AddWithValue("clo", obj.CLO_Name);
@@ -579,6 +594,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                     get.Teacher = sdr["PLO_Name"].ToString();
                     get.assessmentType = sdr["PLO_desc"].ToString();
                     get.id = int.Parse(sdr["PLO_Id"].ToString());
+                    get.totalMark = await GettotalPLOEvaluation(get.id);
                     list.Add(get);
                 }
                 con.Close();
@@ -588,6 +604,20 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
             {
                 throw;
             }
+        }
+        public async Task<int> GettotalPLOEvaluation(int id)
+        {
+            int total = 0;
+            SqlConnection con = new SqlConnection(connString);
+            con.Open();
+            string query = "select * from tbl_PLOTotalCalculation where PLO_Id='" + id + "'";
+            SqlCommand com = new SqlCommand(query, con);
+            SqlDataReader sdr = await com.ExecuteReaderAsync();
+            while (sdr.Read())
+            {
+                total = int.Parse(sdr["PLO_Weightage"].ToString());
+            }
+            return total;
         }
         public async Task<List<AddExam>> GetAllAssignCourses()
         {

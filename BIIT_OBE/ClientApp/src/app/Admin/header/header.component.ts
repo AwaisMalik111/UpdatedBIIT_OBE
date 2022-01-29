@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../services/global.service';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+declare const $: any;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,15 +12,36 @@ export class HeaderComponent implements OnInit {
   uname: string;
   uemail: String;
 
-  constructor(private rout: Router) {
+  constructor(private route: Router,
+    private serv: UserService) {
     this.uname = GlobalService.uname;
     this.uemail = GlobalService.uemail;
   }
 
   ngOnInit() {
+    if (GlobalService.role != 'Admin' && GlobalService.role != 'Student' && GlobalService.role != 'Teacher') {
+      this.getAllPrograms();
+    }
+    else {
+      $("#notify").hide();
+      $("#bell").hide();
+    }
   }
   Logout() {
     GlobalService.role = "logout";
-    this.rout.navigate(['/']);
+    this.route.navigate(['/']);
+  }
+  getAllPrograms() {
+    this.serv.GetallNotification('api/Program', '/GetallNotification').subscribe(response => {
+      if (response > 0) {
+        $("#notify").text(response);
+      }
+      else {
+        $("#notify").text(0);
+      }
+    });
+  }
+  GotoNotify() {
+    this.route.navigate(['Notify']);
   }
 }
