@@ -41,7 +41,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 return false;
                 throw;
             }
-        } 
+        }
         public async Task<bool> UpdateCLO(CourseModal obj)
         {
             try
@@ -229,6 +229,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                     obj = new CourseModal();
                     obj.id = int.Parse(sdr["Course_Id"].ToString());
                     obj.name = sdr["Course_Name"].ToString();
+                    obj.coursetype = sdr["CourseType"].ToString();
                     obj.code = sdr["Course_Code"].ToString();
                     obj.CreditHours = sdr["Course_CreditHour"].ToString();
                     list.Add(obj);

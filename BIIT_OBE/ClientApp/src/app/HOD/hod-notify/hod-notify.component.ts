@@ -92,7 +92,6 @@ export class HodNotifyComponent implements OnInit {
     this.spinner = true;
     this.serv.GetAllPloNotifing('api/Weightage', '/GetAllPloNotifing').subscribe(response => {
       if (response.length != 0) {
-        alert(JSON.stringify(response));
         this.details = response;
         setTimeout(() => {
           this.spinner = false;
