@@ -12,6 +12,7 @@ declare const $: any;
 export class FCARComponent implements OnInit {
   spinner:boolean;
   details: any;
+  clodetails: any;
   constructor(private serv: UserService,
     private rout:Router) {
       this.spinner=true;
@@ -28,9 +29,24 @@ this.getTeacherName();
 setTimeout(function () { $('#datatable').DataTable() }, 500);
   }
   getTeacherName() {
+    this.spinner=true;
     this.serv.getTeacherName('api/Course', '/GetAllAssignedCourses', { 'Teacher': GlobalService.uname }).subscribe(response => {
       if (response) {
         this.details = response;
+        setTimeout(()=>{ 
+          this.spinner=false;
+    }, 600);
+      }
+    });
+  }
+  CLOsAssessment(x){
+    this.spinner=true;
+    this.serv.CLOsAssessmentFCAR('api/Weightage', '/CLOsAssessmentFCAR', { 'coursename': x }).subscribe(response => {
+      if (response) {
+        this.clodetails = response;
+        setTimeout(()=>{ 
+          this.spinner=false;
+    }, 600);
       }
     });
   }

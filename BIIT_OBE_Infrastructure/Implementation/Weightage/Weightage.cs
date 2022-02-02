@@ -737,5 +737,40 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 throw;
             }
         }
+        public async Task<List<AssignWeightage>> CLOsAssessmentFCAR(CLO_PLO_Mapping obj)
+        {
+            try
+            {
+                List<AssignWeightage> list = new List<AssignWeightage>();
+                AssignWeightage get;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "CLOsAssessmentFCAR";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("coursename", obj.coursename);
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
+                while (sdr.Read())
+                {
+                    get = new AssignWeightage();
+                    get.coursename = sdr["coursename"].ToString();
+                    get.quiz = int.Parse(sdr["Quiz"].ToString());
+                    get.assignment = int.Parse(sdr["Assignment"].ToString());
+                    get.lab = int.Parse(sdr["Lab"].ToString());
+                    get.project = int.Parse(sdr["Project"].ToString());
+                    get.mid = int.Parse(sdr["Mid"].ToString());
+                    get.final = int.Parse(sdr["Final"].ToString());
+                    get.CLO_Name = sdr["cloname"].ToString();
+                    get.CLO_Desc = sdr["clodesc"].ToString();
+                    list.Add(get);
+                }
+                con.Close();
+                return list;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -38,7 +38,8 @@
                         <tbody>
                             <tr *ngFor="let item of details">
                                 <td>{{item.course_Title}}</td>
-                                <td><button class="btn btn-primary">CLOs</button></td>
+                                <td><button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                                    aria-controls="offcanvasTop" (click)="CLOsAssessment(item.course_Title)">CLOs</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -50,3 +51,44 @@
     <app-footer></app-footer>
     <!-- Footer Section End -->
 </main>
+<div class="offcanvas offcanvas-top show" tabindex="-1" style="height: 100%;"
+ id="offcanvasTop" aria-labelledby="offcanvasTopLabel" aria-modal="true" role="dialog">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasTopLabel">CLOs Details</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <table id="datatable" class="table table-striped" data-toggle="data-table">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>CLO Name</th>
+                    <th>Quiz</th>
+                    <th>Assignment</th>
+                    <th>Lab</th>
+                    <th>Project</th>
+                    <th>Mid</th>
+                    <th>Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of clodetails">
+                    <td>{{item.coursename}}</td>
+                    <td>
+                        <details>
+                            <summary>
+                                {{item.clO_Name}}
+                            </summary>
+                            <p class="custom_lineBreak">{{item.clO_Desc}}</p>
+                        </details>
+                    </td>
+                    <td><a href="javascript:void(0)"><u>{{item.quiz}}%</u></a></td>
+                    <td><a href="javascript:void(0)"><u>{{item.assignment}}%</u></a></td>
+                    <td><a href="javascript:void(0)"><u>{{item.lab}}%</u></a></td>
+                    <td><a href="javascript:void(0)"><u>{{item.project}}%</u></a></td>
+                    <td><a href="javascript:void(0)"><u>{{item.mid}}%</u></a></td>
+                    <td><a href="javascript:void(0)"><u>{{item.final}}%</u></a></td>
+            </tbody>
+        </table>
+    </div>
+</div>

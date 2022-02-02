@@ -36,6 +36,9 @@ export class UserService {
   GetExamMarks<T>(ControllerName: any, MethodName: any, data: any) {
     return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
   }
+  CLOsAssessmentFCAR<T>(ControllerName: any, MethodName: any, data: any) {
+    return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
+  }
   GetExam<T>(ControllerName: any, MethodName: any, data: any) {
     return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
   }

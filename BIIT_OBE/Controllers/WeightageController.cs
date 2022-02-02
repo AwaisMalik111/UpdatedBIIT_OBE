@@ -73,6 +73,12 @@ namespace BIIT_OBE.Controllers
             List<AssignWeightage> response = await _weightage.GetCLOSAssessment(obj);
             return response;
         }
+        [HttpPost("CLOsAssessmentFCAR")]
+        public async Task<List<AssignWeightage>> CLOsAssessmentFCAR([FromBody] CLO_PLO_Mapping obj)
+        {
+            List<AssignWeightage> response = await _weightage.CLOsAssessmentFCAR(obj);
+            return response;
+        }
         [HttpPost("CLO_Assessment_Check")]
         public async Task<List<AssignWeightage>> CLO_Assessment_Check([FromBody] CLO_PLO_Mapping obj)
         {
