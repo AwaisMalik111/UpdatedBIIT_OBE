@@ -790,14 +790,12 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 while (sdr.Read())
                 {
                     get = new CLO_PLO_Mapping();
-                    get.coursename = sdr["coursename"].ToString();
-                    get.clodes = sdr["Section"].ToString();
-                    get.cloname = sdr["cloname"].ToString();
-                    get.examtype = sdr["examtype"].ToString();
-                    get.quiz= int.Parse(sdr["weight"].ToString());
-                    get.lab = int.Parse(sdr["totalQues"].ToString());
-                    get.final=int.Parse( sdr["totalMarks"].ToString());
-
+                    get.coursename = sdr["ExamId"].ToString();
+                    get.clodes = sdr["ExamType"].ToString();
+                    get.cloname = sdr["GradeA"].ToString();
+                    get.quiz= int.Parse(sdr["GradeB"].ToString());
+                    get.lab = int.Parse(sdr["GradeC"].ToString());
+                    get.final=int.Parse( sdr["GradeD"].ToString());
                     list.Add(get);
                 }
                 con.Close();

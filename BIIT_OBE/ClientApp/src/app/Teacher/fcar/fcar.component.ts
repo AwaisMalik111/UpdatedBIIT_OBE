@@ -14,6 +14,8 @@ export class FCARComponent implements OnInit {
   spinner: boolean;
   details: any;
   clodetails: any;
+  cloname:any;
+  coursename:any;
   constructor(private serv: UserService,
     private rout: Router) {
     this.spinner = true;
@@ -52,6 +54,8 @@ export class FCARComponent implements OnInit {
     });
   }
   GetExamsDetails(x, y, z) {
+    this.cloname=y;
+    this.coursename=x;
     this.spinner = true;
     this.serv.GetExamsDetails('api/Weightage', '/GetExamsDetails',
       {
