@@ -30,6 +30,7 @@ namespace BIIT_OBE_Core.Entities
     }
     public class CLO_PLO_Mapping
     {
+        public string examtype { get; set; }
         public string cloname { get; set; }
         public string clodes{ get; set; }
         public string ploname { get; set; }

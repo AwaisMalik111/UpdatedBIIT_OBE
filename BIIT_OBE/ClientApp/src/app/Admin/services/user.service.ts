@@ -120,6 +120,9 @@ export class UserService {
   ApproveAssessment<T>(ControllerName: any, MethodName: any, data: any) {
     return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
   }
+  GetExamsDetails<T>(ControllerName: any, MethodName: any, data: any) {
+    return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
+  }
   
   /////////////////////////////////GET Requestes///////////////////////////////////////////////////////////////////
 

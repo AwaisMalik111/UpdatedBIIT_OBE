@@ -772,5 +772,41 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                 throw;
             }
         }
+        public async Task<List<CLO_PLO_Mapping>> GetExamsDetails(CLO_PLO_Mapping obj)
+        {
+            try
+            {
+                List<CLO_PLO_Mapping> list = new List<CLO_PLO_Mapping>();
+                CLO_PLO_Mapping get;
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+                string query = "GetExamsDetails";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("coursename", obj.coursename);
+                com.Parameters.AddWithValue("cloname", obj.cloname);
+                com.Parameters.AddWithValue("examtype", obj.examtype);
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
+                while (sdr.Read())
+                {
+                    get = new CLO_PLO_Mapping();
+                    get.coursename = sdr["coursename"].ToString();
+                    get.clodes = sdr["Section"].ToString();
+                    get.cloname = sdr["cloname"].ToString();
+                    get.examtype = sdr["examtype"].ToString();
+                    get.quiz= int.Parse(sdr["weight"].ToString());
+                    get.lab = int.Parse(sdr["totalQues"].ToString());
+                    get.final=int.Parse( sdr["totalMarks"].ToString());
+
+                    list.Add(get);
+                }
+                con.Close();
+                return list;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
