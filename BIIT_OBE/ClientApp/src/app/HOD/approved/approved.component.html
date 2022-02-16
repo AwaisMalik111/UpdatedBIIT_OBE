@@ -49,7 +49,7 @@
                             <thead>
                                 <tr>
                                     <th>Course Name</th>
-                                    <th>CLO Name</th>
+                                    <th>CLO </th>
                                     <th>Quiz</th>
                                     <th>Assignment</th>
                                     <th>Lab</th>
@@ -60,12 +60,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of details">
+                                <tr *ngFor="let item of details;let id=index">
                                     <td>{{item.coursename}}</td>
                                     <td>
                                         <details>
                                             <summary>
-                                                {{item.clO_Name}}
+                                                CLO{{id}}
                                             </summary>
                                             <p class="custom_lineBreak">{{item.clO_Desc}}</p>
                                         </details>

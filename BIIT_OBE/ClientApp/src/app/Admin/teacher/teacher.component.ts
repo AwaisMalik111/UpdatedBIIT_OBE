@@ -139,7 +139,7 @@ spinner:boolean;
     }
   }
   DeleteUser(){
-    if(confirm("Are you sure to delete? ")){
+    if(confirm("Are you sure to Suspend this User? ")){
       this.serv.DeleteUser("api/UserAuth/","DeleteUser",{'id':this.id,'CreatedBy':GlobalService.uname}).subscribe(response => {
         if (response) {
           alert("User suspended Successfully.");

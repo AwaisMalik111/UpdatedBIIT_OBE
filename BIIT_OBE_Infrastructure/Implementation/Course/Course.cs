@@ -434,7 +434,38 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 List<ExcelAllocation> list = new List<ExcelAllocation>();
                 SqlConnection con = new SqlConnection(connString);
                 con.Open();
+                
                 string query = "GetAllAssignedCourses";
+                SqlCommand com = new SqlCommand(query, con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("name", obj.Teacher);
+                SqlDataReader sdr = await com.ExecuteReaderAsync();
+                while (sdr.Read())
+                {
+                    obj = new ExcelAllocation();
+                    obj.Course_Title = sdr["CourseName"].ToString();
+                    obj.Course_Code = sdr["CLO"].ToString();
+                    obj.Program = sdr["Program"].ToString();
+                    obj.Section = sdr["Section"].ToString();
+                    list.Add(obj);
+                }
+                con.Close();
+                return list;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<List<ExcelAllocation>> GetAllCoursesExcel(ExcelAllocation obj)
+        {
+            try
+            {
+                List<ExcelAllocation> list = new List<ExcelAllocation>();
+                SqlConnection con = new SqlConnection(connString);
+                con.Open();
+
+                string query = "GetAllCourses";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("name", obj.Teacher);

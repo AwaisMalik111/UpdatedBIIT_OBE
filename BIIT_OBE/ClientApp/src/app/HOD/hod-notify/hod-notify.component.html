@@ -130,7 +130,7 @@
                             <thead>
                                 <tr>
                                     <th>Course Name</th>
-                                    <th>CLO Name</th>
+                                    <th>CLO</th>
                                     <th>PLO</th>
                                     <th>Evaluated</th>
                                     <th>Weightage</th>
@@ -138,9 +138,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of details">
+                                <tr *ngFor="let item of details;let id=index">
                                     <td>{{item.course_name}}</td>
-                                    <td>{{item.cloname}}</td>
+                                    <td>CLO{{id}}</td>
                                     <td>
                                         <details>
                                             <summary>

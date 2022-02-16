@@ -205,7 +205,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Weightage
                     obj.Course_Id = int.Parse(sdr["PLO_Id"].ToString());
                     obj.ploname = sdr["PLO_Name"].ToString();
                     obj.plodes = sdr["PLO_desc"].ToString();
-                    obj.ploweightage = sdr["Weightage"].ToString();
+                    obj.ploweightage = sdr["PLO_Weightage"].ToString();
                     list.Add(obj);
                 }
                 con.Close();

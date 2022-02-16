@@ -32,14 +32,14 @@
                         <thead>
                             <tr>
                                 <th>Course Title</th>
-                                <th>CLOs</th>
+                                <th>FCAR</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of details">
                                 <td>{{item.course_Title}}</td>
                                 <td><button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
-                                    aria-controls="offcanvasTop" (click)="CLOsAssessment(item.course_Title)">CLOs</button></td>
+                                    aria-controls="offcanvasTop" (click)="GetExamsDetails(item.course_Title,item.course_Code,'final')">View</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -61,53 +61,6 @@
         <table id="datatable" class="table table-striped" data-toggle="data-table">
             <thead>
                 <tr>
-                    <th>Course Name</th>
-                    <th>CLO Name</th>
-                    <th>Quiz</th>
-                    <th>Assignment</th>
-                    <th>Lab</th>
-                    <th>Project</th>
-                    <th>Mid</th>
-                    <th>Final</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of clodetails">
-                    <td>{{item.coursename}}</td>
-                    <td>
-                        <details>
-                            <summary>
-                                {{item.clO_Name}}
-                            </summary>
-                            <p class="custom_lineBreak">{{item.clO_Desc}}</p>
-                        </details>
-                    </td>
-                    <td><a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#CLODetails"
-                                    aria-controls="offcanvasTop" (click)="GetExamsDetails(item.coursename,item.clO_Name,'quiz')"><u>{{item.quiz}}%</u></a></td>
-                    <td><a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#CLODetails"
-                                    aria-controls="offcanvasTop" (click)="GetExamsDetails(item.coursename,item.clO_Name,'assignment')"><u>{{item.assignment}}%</u></a></td>
-                    <td><a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#CLODetails"
-                                    aria-controls="offcanvasTop" (click)="GetExamsDetails(item.coursename,item.clO_Name,'lab')"><u>{{item.lab}}%</u></a></td>
-                    <td><a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#CLODetails"
-                                    aria-controls="offcanvasTop" (click)="GetExamsDetails(item.coursename,item.clO_Name,'project')"><u>{{item.project}}%</u></a></td>
-                    <td><a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#CLODetails"
-                                    aria-controls="offcanvasTop" (click)="GetExamsDetails(item.coursename,item.clO_Name,'mid')"><u>{{item.mid}}%</u></a></td>
-                    <td><a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#CLODetails"
-                                    aria-controls="offcanvasTop" (click)="GetExamsDetails(item.coursename,item.clO_Name,'final')"><u>{{item.final}}%</u></a></td>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="offcanvas offcanvas-top show" tabindex="-1" style="height: 100%;"
- id="CLODetails" aria-labelledby="offcanvasTopLabel" aria-modal="true" role="dialog">
-    <div class="offcanvas-header">
-        <h5 id="offcanvasTopLabel">FCAR</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <table id="datatable" class="table table-striped" data-toggle="data-table">
-            <thead>
-                <tr>
                     <th>CLO Name</th>
                     <th>Course Name</th>
                     <th>Exam Type</th>
@@ -115,13 +68,14 @@
                     <th>Grade B</th>
                     <th>Grade C</th>
                     <th>Grade D</th>
+                    <th>Average</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of clodetails;let count=index">
                     <td>{{cloname}}</td>
                     <td>{{coursename}}</td>
-                    <td style="font-size: 22px;">
+                    <td>
                         {{item.clodes}} {{count+1}}
                     </td>
                     <td style="font-size: 22px;
@@ -144,6 +98,13 @@
                     border-color: #c03221;">
                         {{item.final}}
                     </td>
+                    <td>
+                        {{(item.cloname*4+item.quiz*3+item.lab*2+item.final)/15 | number : '1.2-2'}}
+                    </td>
+                    <tr>
+                        <td colspan="6"></td>
+                        <td colspan="2"><h3>Total Average :  3.87</h3></td>
+                    </tr>
             </tbody>
         </table>
     </div>

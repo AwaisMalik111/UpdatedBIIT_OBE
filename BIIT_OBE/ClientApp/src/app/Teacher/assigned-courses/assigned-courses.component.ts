@@ -40,7 +40,7 @@ export class AssignedCoursesComponent implements OnInit {
     setTimeout(function () { $('#datatable').DataTable() }, 500);
   }
   getTeacherName() {
-    this.serv.getTeacherName('api/Course', '/GetAllAssignedCourses', { 'Teacher': GlobalService.uname }).subscribe(response => {
+    this.serv.getTeacherName('api/Course', '/GetAllCoursesExcel', { 'Teacher': GlobalService.uname }).subscribe(response => {
       if (response) {
         this.details = response;
       }

@@ -109,6 +109,12 @@ namespace BIIT_OBE.Controllers
             List<ExcelAllocation> response = await _course.GetAllAssignedCourses(obj);
             return response;
         }
+        [HttpPost("GetAllCoursesExcel")]
+        public async Task<List<ExcelAllocation>> GetAllCoursesExcel([FromBody] ExcelAllocation obj)
+        {
+            List<ExcelAllocation> response = await _course.GetAllCoursesExcel(obj);
+            return response;
+        }
         [HttpPost("saveMapping")]
         public async Task<bool> saveMapping(PLOList obj)
         {

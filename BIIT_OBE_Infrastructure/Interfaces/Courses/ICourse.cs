@@ -24,6 +24,7 @@ namespace BIIT_OBE_Infrastructure.Interfaces.Courses
         public Task<List<CLOsModal>> GetAllCLOs(CLOsModal obj);
         public Task<List<CLOsModal>> TeacherGetAllCLOs(CLOsModal obj);
         public Task<List<ExcelAllocation>> GetAllAssignedCourses(ExcelAllocation obj);
+        public Task<List<ExcelAllocation>> GetAllCoursesExcel(ExcelAllocation obj);
         public Task<bool> saveMapping(PLOList obj);
     }
 }
