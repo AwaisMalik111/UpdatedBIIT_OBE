@@ -29,11 +29,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of AllExams">
+                            <tr *ngFor="let item of AllExams;let id=index">
                                 <td>
                                     <details>
                                         <summary>
-                                            CLO{{item.id+1}}
+                                            CLO{{id+1}}
                                         </summary>
                                         <small class="custom_lineBreak">{{item.cloname}} : {{item.clodesc}}</small>
                                     </details>

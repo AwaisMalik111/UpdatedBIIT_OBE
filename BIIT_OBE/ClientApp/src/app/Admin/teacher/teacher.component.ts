@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../services/global.service';
 import{UserService} from '../services/user.service';
 import {Router} from '@angular/router';
-import { isTemplateExpression } from 'typescript';
 declare const $:any;
 @Component({
   selector: 'app-teacher',

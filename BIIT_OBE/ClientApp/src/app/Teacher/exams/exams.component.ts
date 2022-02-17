@@ -90,6 +90,7 @@ export class ExamsComponent implements OnInit {
       response => {
         if (response) {
           alert("Result has Saved...!");
+          this.ObtainedMarks=[];
           this.rout.navigate(['/ExamsComponent']);
         } 
         else{

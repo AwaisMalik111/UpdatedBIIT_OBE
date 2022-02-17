@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Alert } from 'selenium-webdriver';
 import { GlobalService } from '../Admin/services/global.service';
 import { UserService } from '../Admin/services/user.service';
 declare const $: any;
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
           if (response[0].status === "Admin") {
             GlobalService.role = "Admin";
             GlobalService.uname = response[0].name;
+           
             GlobalService.uemail = response[0].remail;
             this.rout.navigate(["/teacher"]);
           }
@@ -61,8 +63,8 @@ export class LoginComponent implements OnInit {
           }
           else if (response[0].status === "Teacher") {
             GlobalService.role = "Teacher";
-            GlobalService.uname = response[0].name;
-            GlobalService.uemail = response[0].remail;
+            GlobalService.uname = response[0].remail;
+            GlobalService.uemail = response[0].name;
             this.rout.navigate(["/AssignedCoursesComponent"]);
           }
           else if (response[0].status === "Student") {

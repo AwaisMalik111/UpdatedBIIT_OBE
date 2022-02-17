@@ -123,10 +123,21 @@ export class UserService {
   GetExamsDetails<T>(ControllerName: any, MethodName: any, data: any) {
     return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName, data);
   }
-  
+  DetailsCoursesStudent<T>(ControllerName: any, MethodName: any,data:any) {
+    return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName,data);
+  }
+  SelectedPLO_GetCLOS<T>(ControllerName: any, MethodName: any,data:any) {
+    return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName,data);
+  }
+  PLOSCourses<T>(ControllerName: any, MethodName: any,data:any) {
+    return this.http.post<any>("https://localhost:44300/" + ControllerName + MethodName,data);
+  }
   /////////////////////////////////GET Requestes///////////////////////////////////////////////////////////////////
 
   GetallTeachers<T>(ControllerName: any, MethodName: any) {
+    return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
+  }
+  DetailsCourses<T>(ControllerName: any, MethodName: any) {
     return this.http.get<any>("https://localhost:44300/" + ControllerName + MethodName);
   }
   GetAllStudents<T>(ControllerName: any, MethodName: any) {

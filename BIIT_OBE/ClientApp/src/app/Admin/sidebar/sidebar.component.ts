@@ -14,11 +14,17 @@ export class SidebarComponent implements OnInit {
   }
   ngOnInit() {
     if (this.route.url.endsWith('teacher')) this.tech();
+    if (this.route.url.endsWith('transcript')) this.Transcripts();
   }
 
   tech() {
     this.active = "teac";
     $("#" + this.active).addClass('active');
     this.route.navigate(["/teacher"]);
+  }
+  Transcripts() {
+    this.active = "Transcripts";
+    $("#" + this.active).addClass('active');
+    this.route.navigate(["/transcript"]);
   }
 }

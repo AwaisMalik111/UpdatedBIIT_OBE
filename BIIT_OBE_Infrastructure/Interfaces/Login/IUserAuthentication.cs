@@ -15,5 +15,9 @@ namespace BIIT_OBE_Infrastructure.Interfaces.Login
         Task<bool> DeleteUser(UserModal obj);
        Task<List<UserModal>> getAllTeacher();
        Task<List<UserModal>> GetAllStudents();
+       Task<List<UserModal>> DetailsCoursesStudent(UserModal obj);
+       Task<List<UserModal>> SelectedPLO_GetCLOS(UserModal obj);
+       Task<List<UserModal>> GetCLOSAssessment(UserModal obj);
+       Task<List<UserModal>> PLOSCourses(UserModal obj);
     }
 }

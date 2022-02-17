@@ -30,9 +30,13 @@ import { TeacherClosComponent } from './Teacher/teacher-clos/teacher-clos.compon
 import { TeacherNotifyComponent } from './Teacher/teacher-notify/teacher-notify.component';
 import { ApprovedComponent } from './HOD/approved/approved.component';
 import { FCARComponent } from './Teacher/fcar/fcar.component';
+import { BriefTranscriptComponent } from './Admin/brief-transcript/brief-transcript.component';
+import { StudentDetailsComponent } from './Admin/student-details/student-details.component';
 
 @NgModule({
   declarations: [
+    BriefTranscriptComponent,
+    StudentDetailsComponent,
     TeacherClosComponent,
     HodNotifyComponent,
     ApprovedComponent,
@@ -67,6 +71,8 @@ import { FCARComponent } from './Teacher/fcar/fcar.component';
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'teacher', component: TeacherComponent, }, //for admin
+      { path: 'studentDetails', component: StudentDetailsComponent, }, //for admin
+      { path: 'transcript', component: BriefTranscriptComponent, }, //for admin
       { path: 'userdetails', component: UserDetailsComponent, }, //for admin
       //for Hod
       { path: 'program', component: ProgramComponent, },
