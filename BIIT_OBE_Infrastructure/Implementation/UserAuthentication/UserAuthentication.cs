@@ -227,11 +227,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                 UserModal obj;
                 List<UserModal> list = new List<UserModal>();
                 SqlConnection con = new SqlConnection(connString);
-                con.Open();
-                Random r = new Random();
-                int x = 0, count = 0;
-                int y = r.Next(8);
-                int z=r.Next(8);    
+                con.Open();   
                 string query = "ploPassfail";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
@@ -248,21 +244,11 @@ namespace BIIT_OBE_Infrastructure.Implementation.UserAuthentication
                     obj.clo = float.Parse(sdr["cm"].ToString());
                     obj.p = obj.o / obj.t;
                     obj.p = obj.p * 100;
-                    count++;
                     if (obj.p > 70)
                     {
                         obj.gra = "Pass";
                     }
                     else
-                    {
-                        obj.gra = "Fail";
-                    }
-                    if (z == count)
-                    {
-                        x++;
-                        obj.gra = "Fail";
-                    }
-                    if (y == count)
                     {
                         obj.gra = "Fail";
                     }
