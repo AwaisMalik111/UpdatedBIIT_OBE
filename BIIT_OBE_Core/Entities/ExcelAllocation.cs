@@ -10,7 +10,6 @@ namespace BIIT_OBE_Core.Entities
     {
         public string Course_Title { get; set; }
         public string Course_Code { get; set; }
-        public string Program { get; set; }
         public string Teacher { get; set; }
         public string Section { get; set; }
     }

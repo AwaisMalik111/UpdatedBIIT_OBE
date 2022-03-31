@@ -37,6 +37,9 @@ export class ApprovedComponent implements OnInit {
         setTimeout(() => {
           this.spinner = false;
         }, 400);
+        setTimeout(() => {
+          $('#datatable').DataTable()
+        }, 1000);
       } else {
         this.details = response;
         setTimeout(() => {
@@ -54,6 +57,9 @@ export class ApprovedComponent implements OnInit {
         setTimeout(() => {
           this.spinner = false;
         }, 400);
+        setTimeout(() => {
+          $('#datatable').DataTable()
+        }, 1000);
       } else {
         this.details = response;
         setTimeout(() => {
@@ -71,6 +77,9 @@ export class ApprovedComponent implements OnInit {
         setTimeout(() => {
           this.spinner = false;
         }, 400);
+        setTimeout(() => {
+          $('#datatable').DataTable()
+        }, 1000);
       } else {
         this.details = response;
         setTimeout(() => {

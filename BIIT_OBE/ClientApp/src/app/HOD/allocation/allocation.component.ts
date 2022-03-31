@@ -61,6 +61,7 @@ export class AllocationComponent implements OnInit {
           this.spinner=false;
     }, 400);
         alert("Allocation Had Been Done.");
+        this.allocation='';
        }
     });
   }

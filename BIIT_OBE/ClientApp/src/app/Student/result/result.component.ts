@@ -38,6 +38,7 @@ export class ResultComponent implements OnInit {
     }).subscribe(response => {
       if (response) {
         this.allResult = response;
+        setTimeout(function () { $('#datatable').DataTable() }, 500);
       }
     });
   }
@@ -50,6 +51,7 @@ export class ResultComponent implements OnInit {
     }).subscribe(response => {
       if (response) {
         this.clos = response;
+        setTimeout(function () { $('#datatable').DataTable() }, 500);
       }
     });
   }
@@ -58,6 +60,7 @@ export class ResultComponent implements OnInit {
     ).subscribe(response => {
       if (response!=0) {
         this.plos = response;
+        setTimeout(function () { $('#datatable').DataTable() }, 500);
       }
     });
   }

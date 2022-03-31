@@ -394,16 +394,15 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                             await AllocateCourse(ExcelList[i]);
                         }
                     }
+
                 }
-                con.Close();
-                return true;
-            }
+                    con.Close();
+                    return true;
+                }
             catch (Exception)
             {
                 return false;
-                throw;
             }
-
         }
         public async Task<bool> AllocateCourse(ExcelAllocation ExcelList)
         {
@@ -416,7 +415,6 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 com1.CommandType = CommandType.StoredProcedure;
                 com1.Parameters.AddWithValue("name", ExcelList.Course_Title);
                 com1.Parameters.AddWithValue("code", ExcelList.Course_Code);
-                com1.Parameters.AddWithValue("Program", ExcelList.Program);
                 com1.Parameters.AddWithValue("teacher", ExcelList.Teacher);
                 com1.Parameters.AddWithValue("section", ExcelList.Section);
                 await com1.ExecuteNonQueryAsync();
@@ -434,7 +432,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                 List<ExcelAllocation> list = new List<ExcelAllocation>();
                 SqlConnection con = new SqlConnection(connString);
                 con.Open();
-                
+
                 string query = "GetAllAssignedCourses";
                 SqlCommand com = new SqlCommand(query, con);
                 com.CommandType = CommandType.StoredProcedure;
@@ -445,7 +443,6 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                     obj = new ExcelAllocation();
                     obj.Course_Title = sdr["CourseName"].ToString();
                     obj.Course_Code = sdr["CLO"].ToString();
-                    obj.Program = sdr["Program"].ToString();
                     obj.Section = sdr["Section"].ToString();
                     list.Add(obj);
                 }
@@ -475,7 +472,6 @@ namespace BIIT_OBE_Infrastructure.Implementation.Course
                     obj = new ExcelAllocation();
                     obj.Course_Title = sdr["CourseName"].ToString();
                     obj.Course_Code = sdr["CourseCode"].ToString();
-                    obj.Program = sdr["Program"].ToString();
                     obj.Section = sdr["Section"].ToString();
                     list.Add(obj);
                 }

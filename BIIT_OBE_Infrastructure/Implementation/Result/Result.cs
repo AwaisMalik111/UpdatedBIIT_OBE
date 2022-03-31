@@ -308,7 +308,7 @@ namespace BIIT_OBE_Infrastructure.Implementation.Result
                     obj.tmarks = sdr["TotalMarks"].ToString();
                     list.Add(obj);
                 }
-                con.Close();
+                 con.Close();
                 return list;
             }
             catch (Exception)

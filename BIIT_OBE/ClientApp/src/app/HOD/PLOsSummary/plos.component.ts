@@ -30,6 +30,9 @@ export class PlosComponent implements OnInit {
   }
   ngOnInit() {
     this.getAllPrograms();
+    setTimeout(() => {
+      $('#datatable').DataTable()
+    }, 1000);
   }
 
   getAllPrograms() {
@@ -41,6 +44,9 @@ export class PlosComponent implements OnInit {
         setTimeout(()=>{ 
           this.spinner=false;
     }, 400);
+    setTimeout(() => {
+      $('#datatable').DataTable()
+    }, 1000);
         this.SelectedProgram_GetPLOS();
       }
     });
@@ -55,6 +61,9 @@ export class PlosComponent implements OnInit {
         setTimeout(()=>{ 
           this.spinner=false;
     }, 400);
+    setTimeout(() => {
+      $('#datatable').DataTable()
+    }, 1000);
       }
       else {
         setTimeout(()=>{ 
@@ -77,6 +86,9 @@ export class PlosComponent implements OnInit {
       if (response) {
         this.clodetails = response;
         this.spinner=false;
+        setTimeout(() => {
+          $('#datatable').DataTable()
+        }, 1000);
       }
     });
   }

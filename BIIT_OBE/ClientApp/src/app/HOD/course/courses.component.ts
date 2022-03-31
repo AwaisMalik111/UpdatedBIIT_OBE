@@ -11,12 +11,10 @@ declare const $: any;
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-  abstractMapping: boolean;
   courseId: number;
   name: string;
   code: string;
   credithour: string;
-  abstractMappingArray: any;
   coursetype: any;
   uname: string;
   ucode: string;
@@ -33,13 +31,11 @@ export class CoursesComponent implements OnInit {
       this.rout.navigate(['/']);
     }
     this.spinner = true;
-    this.abstractMapping = true;
     this.name = "";
     this.courseId = 0;
     this.code = "";
     this.credithour = "";
     this.SelectedPrograms = [];
-    this.abstractMappingArray = [];
   }
   ngOnInit() {
     this.getAllPrograms();
@@ -85,6 +81,7 @@ export class CoursesComponent implements OnInit {
         setTimeout(() => {
           this.spinner = false;
         }, 400);
+        setTimeout(function () { $('#datatable').DataTable() }, 500);
       }
     });
   }
@@ -177,42 +174,12 @@ export class CoursesComponent implements OnInit {
     this.spinner = false;
     this.rout.navigate(["/CLOAssessment"]);
   }
-  saveMapping(){
-    this.serv.AddNewCourse('api/Course', '/saveMapping', {
-      'abstractMappingArray': this.abstractMappingArray
-    }).subscribe(response => {
-      if (response.length != 0) {
-        alert("Mapping has been saved.");
-        this.abstractMappingArray = [];
-        setTimeout(()=>{ 
-          this.spinner=false;
-    }, 400);
-        this.ngOnInit();
-      }
-    });
-  }
   //Arrays
   SelectedProgramName(x, index, checkedProp) {
     if (checkedProp) {
       this.SelectedPrograms.push({ id: x, checked: true })
     } else {
       this.SelectedPrograms.splice(x, 1);
-    }
-  }
-  Mapping(x) {
-    if (x === 1) {
-      this.abstractMapping = false;
-    }
-    else {
-      this.abstractMapping = true;
-    }
-  }
-  ploMapped(id, y, status) {
-    if (status) {
-      this.abstractMappingArray.push({ coursename: y, ploid: id });
-    }
-    else {
-      this.abstractMappingArray.splice({ coursename: y, ploid: id }, 1)
     }
   }
 }
