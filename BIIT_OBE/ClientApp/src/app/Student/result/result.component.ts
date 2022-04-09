@@ -19,7 +19,7 @@ export class ResultComponent implements OnInit {
   constructor(private serv: UserService,
     private rout: Router) {
       this.spinner=true;
-    if (GlobalService.role != 'Student') {
+    if (sessionStorage.getItem('role') != 'Student') {
       this.rout.navigate(['/']);
     }
   }
@@ -56,7 +56,7 @@ export class ResultComponent implements OnInit {
     });
   }
   ViewStudentPlo(){
-    this.serv.ViewStudentPlo('api/Result', '/getAllStudentResult',{'regno':GlobalService.uemail}
+    this.serv.ViewStudentPlo('api/Result', '/getAllStudentResult',{'regno':sessionStorage.getItem('uemail')}
     ).subscribe(response => {
       if (response!=0) {
         this.plos = response;

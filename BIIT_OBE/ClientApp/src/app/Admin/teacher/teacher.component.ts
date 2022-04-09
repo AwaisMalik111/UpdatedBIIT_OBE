@@ -39,7 +39,7 @@ spinner:boolean;
     this.ucpassword="";
     this.urole="";
     this.spinner=true;
-    if(GlobalService.role!='Admin'){
+    if(sessionStorage.getItem('role')!='Admin'){
       this.rout.navigate(['/']);
     }
    }
@@ -58,7 +58,7 @@ spinner:boolean;
       return;
     }else{
       this.serv.AddNewMember("api/UserAuth/","AddNewMember",{'fname':this.fname,'lname':this.lname,
-      'email':this.email,'password':this.password,'role':this.role ,'CreatedBy':GlobalService.uname}).subscribe(response => {
+      'email':this.email,'password':this.password,'role':this.role ,'CreatedBy':sessionStorage.getItem('uname')}).subscribe(response => {
         if (response) {
           this.fname="";
           this.lname="";
@@ -90,17 +90,6 @@ spinner:boolean;
           alert("Server Error");
         });
     }  
-    UserDetails(item){
-      GlobalService.uname=item.name;
-      GlobalService.uemail=item.remail;
-      GlobalService.upass=item.rpassword;
-      GlobalService.role=item.status;
-      GlobalService.createdBy=item.createdBy;
-      GlobalService.createdDate=item.createdDate;
-      GlobalService.modifiedBy=item.modifiedBy;
-      GlobalService.modifiedDate=item.modifiedDate;
-      this.rout.navigate(["/userdetails"]);
-    }
     UpdateDetails(item){
       this.id=item.id;
       this.ufname=item.name;
@@ -116,7 +105,7 @@ spinner:boolean;
         return;
       }else{
         this.serv.UpdateUser("api/UserAuth/","UpdateUser",{'id':this.id,'fname':this.ufname,'lname':this.ulname,
-        'email':this.uemail,'password':this.upassword,'role':this.urole ,'CreatedBy':GlobalService.uname}).subscribe(response => {
+        'email':this.uemail,'password':this.upassword,'role':this.urole ,'CreatedBy':sessionStorage.getItem('uname')}).subscribe(response => {
           if (response) {
             this.ufname="";
             this.ulname="";
@@ -139,7 +128,7 @@ spinner:boolean;
   }
   DeleteUser(){
     if(confirm("Are you sure to Suspend this User? ")){
-      this.serv.DeleteUser("api/UserAuth/","DeleteUser",{'id':this.id,'CreatedBy':GlobalService.uname}).subscribe(response => {
+      this.serv.DeleteUser("api/UserAuth/","DeleteUser",{'id':this.id,'CreatedBy':sessionStorage.getItem('uname')}).subscribe(response => {
         if (response) {
           alert("User suspended Successfully.");
           this.GetAllTeachers();

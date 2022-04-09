@@ -15,7 +15,7 @@ export class TeacherNotifyComponent implements OnInit {
   assessment: boolean;
   constructor(private serv: UserService,
     private rout: Router) {
-    if (GlobalService.role != 'Teacher') {
+    if (sessionStorage.getItem('role') != 'Teacher') {
       this.rout.navigate(['/']);
     }
     this.spinner = true;

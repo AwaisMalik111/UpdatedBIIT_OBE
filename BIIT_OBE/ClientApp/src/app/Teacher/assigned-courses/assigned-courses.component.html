@@ -44,7 +44,7 @@
                                 <td>{{item.course_Code}}</td>
                                 <td>{{item.program}}{{item.section}}</td>
                                 <td >
-                                    <ng-container *ngIf="item.section==='A'">
+                                    <ng-container >
                                         <input (click)="Closmanagement(item.course_Title)" class="btn btn-primary"
                                         type="button"
                                         value="CLOS">

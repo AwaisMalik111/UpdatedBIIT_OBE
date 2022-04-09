@@ -24,7 +24,7 @@ export class PlosComponent implements OnInit {
       this.spinner=true;
     this.mainTable = true;
     this.count = 0;
-    if (GlobalService.role != 'HOD') {
+    if (sessionStorage.getItem('role') != 'HOD') {
       this.rout.navigate(['/']);
     }
   }

@@ -35,7 +35,7 @@ export class ProgramComponent implements OnInit {
     this.pname = "";
     this.pdesc = "";
     this.ploname = [];
-    if (GlobalService.role != 'HOD') {
+    if (sessionStorage.getItem('role') != 'HOD') {
       this.rout.navigate(['/']);
       this.spinner=true;
     }
@@ -60,7 +60,7 @@ export class ProgramComponent implements OnInit {
       return;
     }
     this.serv.AddNewPRogram("api/Program", "/addnewprogram",
-      { 'pname': this.pname, 'pdesc': this.pdesc, 'createdBy': GlobalService.uname }).subscribe(response => {
+      { 'pname': this.pname, 'pdesc': this.pdesc, 'createdBy': sessionStorage.getItem('uname') }).subscribe(response => {
         if (response) {
           alert("Program added successfully.")
           this.pname = "";
@@ -97,7 +97,7 @@ export class ProgramComponent implements OnInit {
         'plopass': this.newploPassign,
         'plodesc': this.newploDesc,
         'list': this.ploname,
-        'createdBy': GlobalService.uname
+        'createdBy': sessionStorage.getItem('uname')
       }).subscribe(response => {
         if (response) {
           alert("PLO Assinged successfully.");
@@ -130,7 +130,7 @@ export class ProgramComponent implements OnInit {
   }
   DeleteProgram() {
     if (confirm("Are you sure to delete? ")) {
-      this.serv.DeleteUser("api/Program/", "Deleteprogram", { 'id': this.id, 'CreatedBy': GlobalService.uname }).subscribe(response => {
+      this.serv.DeleteUser("api/Program/", "Deleteprogram", { 'id': this.id, 'CreatedBy': sessionStorage.getItem('uname') }).subscribe(response => {
         if (response) {
           alert("Program Deleted Successfully.");
           setTimeout(()=>{ 
@@ -143,7 +143,7 @@ export class ProgramComponent implements OnInit {
     }
   }
   ProgramDetails(item) {
-    GlobalService.programdetail = item;
+    sessionStorage.setItem('programdetail',item)
     this.rout.navigate(['/viewprograms']);
   }
   UpdateProgramDetail(item) {
@@ -161,7 +161,7 @@ export class ProgramComponent implements OnInit {
       return;
     }
     this.serv.Updateprogram("api/Program", "/Updateprogram",
-      { 'id': this.id, 'pname': this.upname, 'pdesc': this.updesc, 'createdBy': GlobalService.uname }).subscribe(response => {
+      { 'id': this.id, 'pname': this.upname, 'pdesc': this.updesc, 'createdBy': sessionStorage.getItem('uname') }).subscribe(response => {
         if (response) {
           alert("Program updated successfully.")
           this.pname = "";
@@ -220,7 +220,7 @@ export class ProgramComponent implements OnInit {
   }
   DeletePLO(item) {
     if (confirm("Are you sure to delete? ")) {
-      this.serv.DeletePLO("api/Program/", "DeletePLO", { 'id': item, 'Programid': this.selectedProgramId, 'CreatedBy': GlobalService.uname }).subscribe(response => {
+      this.serv.DeletePLO("api/Program/", "DeletePLO", { 'id': item, 'Programid': this.selectedProgramId, 'CreatedBy': sessionStorage.getItem('uname') }).subscribe(response => {
         if (response) {
           setTimeout(()=>{ 
             this.spinner=false;

@@ -19,7 +19,7 @@ export class FCARComponent implements OnInit {
   constructor(private serv: UserService,
     private rout: Router) {
     this.spinner = true;
-    if (GlobalService.role != 'Teacher') {
+    if (sessionStorage.getItem('role') != 'Teacher') {
       this.rout.navigate(['/']);
     }
   }
@@ -33,7 +33,7 @@ export class FCARComponent implements OnInit {
   }
   getTeacherName() {
     this.spinner = true;
-    this.serv.getTeacherName('api/Course', '/GetAllAssignedCourses', { 'Teacher': GlobalService.uname }).subscribe(response => {
+    this.serv.getTeacherName('api/Course', '/GetAllAssignedCourses', { 'Teacher': sessionStorage.getItem('uname') }).subscribe(response => {
       if (response) {
         this.details = response;
         setTimeout(() => {

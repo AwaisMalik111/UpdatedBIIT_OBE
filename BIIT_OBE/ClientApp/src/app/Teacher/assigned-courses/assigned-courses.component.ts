@@ -25,7 +25,7 @@ export class AssignedCoursesComponent implements OnInit {
   constructor(private serv: UserService,
     private rout:Router) {
       this.spinner=true;
-      if (GlobalService.role != 'Teacher') {
+      if (sessionStorage.getItem('role') != 'Teacher') {
         this.rout.navigate(['/']);
       }
     this.setWeightage = 0;
@@ -40,7 +40,7 @@ export class AssignedCoursesComponent implements OnInit {
     setTimeout(function () { $('#datatable').DataTable() }, 500);
   }
   getTeacherName() {
-    this.serv.getTeacherName('api/Course', '/GetAllCoursesExcel', { 'Teacher': GlobalService.uname }).subscribe(response => {
+    this.serv.getTeacherName('api/Course', '/GetAllCoursesExcel', { 'Teacher': sessionStorage.getItem('uname') }).subscribe(response => {
       if (response) {
         this.details = response;
       }
@@ -99,7 +99,7 @@ export class AssignedCoursesComponent implements OnInit {
     }
     this.serv.AddNewExam('api/Weightage', '/AddNewExam',
       {
-        'Teacher': GlobalService.uname,
+        'Teacher': sessionStorage.getItem('uname'),
         'Course_name': this.title,
         'clo_name': this.SelectedCLO,
         'assessmentType': this.assessmentType,

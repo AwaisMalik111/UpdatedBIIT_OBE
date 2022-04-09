@@ -14,7 +14,6 @@ import { ProgramComponent } from './HOD/program/program.component';
 import { CoursesComponent } from './HOD/course/courses.component';
 import { HodNotifyComponent } from './HOD/hod-notify/hod-notify.component';
 import { FooterComponent } from './Admin/footer/footer.component';
-import { UserDetailsComponent } from './Admin/user-details/user-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TsidebarComponent } from './Teacher/tsidebar/tsidebar.component';
@@ -31,12 +30,10 @@ import { TeacherNotifyComponent } from './Teacher/teacher-notify/teacher-notify.
 import { ApprovedComponent } from './HOD/approved/approved.component';
 import { FCARComponent } from './Teacher/fcar/fcar.component';
 import { BriefTranscriptComponent } from './Admin/brief-transcript/brief-transcript.component';
-import { StudentDetailsComponent } from './Admin/student-details/student-details.component';
 
 @NgModule({
   declarations: [
     BriefTranscriptComponent,
-    StudentDetailsComponent,
     TeacherClosComponent,
     HodNotifyComponent,
     ApprovedComponent,
@@ -61,7 +58,6 @@ import { StudentDetailsComponent } from './Admin/student-details/student-details
     CoursesComponent,
     SidebarComponent,
     HeaderComponent,
-    UserDetailsComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -71,9 +67,7 @@ import { StudentDetailsComponent } from './Admin/student-details/student-details
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'teacher', component: TeacherComponent, }, //for admin
-      { path: 'studentDetails', component: StudentDetailsComponent, }, //for admin
       { path: 'transcript', component: BriefTranscriptComponent, }, //for admin
-      { path: 'userdetails', component: UserDetailsComponent, }, //for admin
       //for Hod
       { path: 'program', component: ProgramComponent, },
       { path: 'course', component: CoursesComponent, },

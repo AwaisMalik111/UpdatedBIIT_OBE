@@ -21,7 +21,7 @@ export class PloMappingComponent implements OnInit {
   spinner:boolean;
   constructor(private serv: UserService,
     private rout: Router) {
-    if (GlobalService.role != 'HOD') {
+    if (sessionStorage.getItem('role') != 'HOD') {
       this.rout.navigate(['/']);
     }
     this.spinner=true;

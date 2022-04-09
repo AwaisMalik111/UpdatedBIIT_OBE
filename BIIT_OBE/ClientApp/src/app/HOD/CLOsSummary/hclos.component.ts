@@ -18,7 +18,7 @@ export class HclosComponent implements OnInit {
   spinner:boolean;
   constructor(private rout: Router,
     private serv: UserService) {
-    if (GlobalService.role != 'HOD') {
+    if (sessionStorage.getItem('role') != 'HOD') {
       this.rout.navigate(['/']);
     }
     this.spinner=true;

@@ -133,7 +133,7 @@ export class CLOManagementComponent implements OnInit {
     this.serv.AssignCLOs('api/Course', '/AssignCLOs', {
       'ProgramId': Programs.ProgramId,
       'courseID': Courses.courseId,
-      'cloName': this.Cloname, 'cloDesc': this.Clodesc, 'createdBy': GlobalService.uname
+      'cloName': this.Cloname, 'cloDesc': this.Clodesc, 'createdBy': sessionStorage.getItem('uname')
     }).subscribe(response => {
       if (response.length != 0) {
         this.Cloname = "";
@@ -343,7 +343,7 @@ export class CLOManagementComponent implements OnInit {
           'CLO_Id': this.uCloid,
           'Course_Id':Courses.courseId ,
           'Program_Id': Programs.ProgramId,
-          'createdBy': GlobalService.uname
+          'createdBy': sessionStorage.getItem('uname')
         }).subscribe(response => {
           if (response.length != 0) {
             alert("Assessment had done.");

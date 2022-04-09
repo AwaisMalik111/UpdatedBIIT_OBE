@@ -27,7 +27,7 @@ export class CoursesComponent implements OnInit {
   spinner: boolean;
   constructor(private serv: UserService,
     private rout: Router) {
-    if (GlobalService.role != 'HOD') {
+    if (sessionStorage.getItem('role') != 'HOD') {
       this.rout.navigate(['/']);
     }
     this.spinner = true;
@@ -97,7 +97,7 @@ export class CoursesComponent implements OnInit {
     }
     this.serv.AddNewCourse('api/Course', '/AddNewCourses', {
       'name': this.name, 'code': this.code, 'coursetype': this.coursetype,
-      'CreditHours': this.credithour, 'createdBy': GlobalService.uname,
+      'CreditHours': this.credithour, 'createdBy': sessionStorage.getItem('uname'),
       'programs': this.SelectedPrograms
     }).subscribe(response => {
       if (response.length != 0) {
@@ -133,7 +133,7 @@ export class CoursesComponent implements OnInit {
     this.serv.UpdateCourses('api/Course', '/UpdateCourses', {
       'id': this.courseId, 'name': this.uname, 'code': this.ucode,
       'coursetype': this.coursetype,
-      'CreditHours': this.ucredithour, 'createdBy': GlobalService.uname,
+      'CreditHours': this.ucredithour, 'createdBy': sessionStorage.getItem('uname'),
     }).subscribe(response => {
       if (response.length != 0) {
         alert("Course has updated successfully.");
@@ -149,7 +149,7 @@ export class CoursesComponent implements OnInit {
   }
   DeleteCourse() {
     if (confirm("Are you sure to delete? ")) {
-      this.serv.DeleteUser("api/Course/", "DeleteCourse", { 'id': this.courseId, 'CreatedBy': GlobalService.uname }).subscribe(response => {
+      this.serv.DeleteUser("api/Course/", "DeleteCourse", { 'id': this.courseId, 'CreatedBy': sessionStorage.getItem('uname') }).subscribe(response => {
         if (response.length != 0) {
           alert("Course has Deleted Successfully.");
           setTimeout(() => {

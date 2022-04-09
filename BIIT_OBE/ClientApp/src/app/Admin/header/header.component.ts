@@ -19,7 +19,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (GlobalService.role != 'Admin' && GlobalService.role != 'Student' && GlobalService.role != 'Teacher') {
+    if (sessionStorage.getItem('role') != 'Admin' && 
+    sessionStorage.getItem('role') != 'Student'
+     && sessionStorage.getItem('role') != 'Teacher') {
       this.getAllPrograms();
     }
     else {
@@ -28,7 +30,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   Logout() {
-    GlobalService.role = "logout";
+    sessionStorage.setItem('role',"logout");
     this.route.navigate(['/']);
   }
   getAllPrograms() {

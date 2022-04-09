@@ -19,7 +19,7 @@ export class ClosComponent implements OnInit {
   constructor(private serv: UserService,
     private rout: Router) {
       this.spinner=true;
-    if (GlobalService.role != 'Teacher') {
+    if (sessionStorage.getItem('role') != 'Teacher') {
       this.rout.navigate(['/']);
 
     }

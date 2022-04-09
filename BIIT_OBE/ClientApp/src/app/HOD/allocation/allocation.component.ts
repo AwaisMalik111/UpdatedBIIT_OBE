@@ -14,7 +14,7 @@ export class AllocationComponent implements OnInit {
   constructor(private serv: UserService,
     private rout: Router) {
       this.spinner=true;
-    if (GlobalService.role != 'HOD') {
+    if (sessionStorage.getItem('role') != 'HOD') {
       this.rout.navigate(['/']);
     }
   }

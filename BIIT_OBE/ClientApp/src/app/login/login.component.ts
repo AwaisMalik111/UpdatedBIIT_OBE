@@ -46,31 +46,31 @@ export class LoginComponent implements OnInit {
       this.warning = false;
       this.danger = true;
     } else {
-      this.user.TokenAuth('api/UserAuth/', 'UserAuthorize', { 'remail': this.remail, 'rpassword': this.rpassword }).subscribe(
+      this.user.TokenAuth('api/UserAuth/', 'UserAuthorize',
+       { 'remail': this.remail, 'rpassword': this.rpassword }).subscribe(
         response => {
           if (response[0].status === "Admin") {
-            GlobalService.role = "Admin";
-            GlobalService.uname = response[0].name;
-           
-            GlobalService.uemail = response[0].remail;
+            sessionStorage.setItem('role',"Admin");
+            sessionStorage.setItem('uname',response[0].name);
+            sessionStorage.setItem('uemail',response[0].remail);
             this.rout.navigate(["/teacher"]);
           }
           else if (response[0].status === "HOD") {
-            GlobalService.role = "HOD";
-            GlobalService.uname = response[0].name;
-            GlobalService.uemail = response[0].remail;
+            sessionStorage.setItem('role', "HOD");
+            sessionStorage.setItem('uname',response[0].name);
+            sessionStorage.setItem('uemail',response[0].remail);
             this.rout.navigate(["/program"]);
           }
           else if (response[0].status === "Teacher") {
-            GlobalService.role = "Teacher";
-            GlobalService.uname = response[0].remail;
-            GlobalService.uemail = response[0].name;
+            sessionStorage.setItem('role',"Teacher");
+            sessionStorage.setItem('uname',response[0].name);
+            sessionStorage.setItem('uemail',response[0].remail);
             this.rout.navigate(["/AssignedCoursesComponent"]);
           }
           else if (response[0].status === "Student") {
-            GlobalService.role = "Student";
-            GlobalService.uname = response[0].name;
-            GlobalService.uemail = response[0].remail;
+            sessionStorage.setItem('role',"Student");
+            sessionStorage.setItem('uname',response[0].name);
+            sessionStorage.setItem('uemail',response[0].remail);
             this.rout.navigate(["/StudentViewResult"]);
           }
           else if (response[0].status === "false") {
