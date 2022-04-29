@@ -1,0 +1,14 @@
+     [HttpPost]
+        public void image(IFormFile image)
+        {
+            var uploads = Path.Combine(_env.WebRootPath, "assets\\img");
+            if (image.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(image.FileName);
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                {
+                    image.CopyToAsync(fileStream);
+                    string c = fileName;
+                }
+            }
+        }
