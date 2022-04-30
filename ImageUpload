@@ -12,3 +12,10 @@
                 }
             }
         }
+ text file upload 
+ 
+   using (StreamWriter outputFile = new StreamWriter(Path.Combine(_env.ContentRootPath, @"wwwroot\Claim File\" + "ClaimParsingFile" + DateTime.Now.Ticks + ".txt")))
+   {
+    foreach (string line in SegmentsList)
+    outputFile.WriteLine(line);
+   }
